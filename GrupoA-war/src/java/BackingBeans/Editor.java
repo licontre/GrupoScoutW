@@ -115,38 +115,10 @@ public class Editor implements Serializable {
             Date fe = sm.parse(getAnio()+"-"+getMes()+"-"+getDia());
             user.setFechanacimiento(fe);
         }
-        if(cargo!=null){
-            switch (cargo) {
-                case "SECRETARIA":
-                    user.setCargo(Usuario.Cargo.SECRETARIA);
-                    break;
-                case "MONITOR":
-                    user.setCargo(Usuario.Cargo.MONITOR);
-                    break;
-                case "SCOUTER":
-                    user.setCargo(Usuario.Cargo.SCOUTER);
-                    break;
-                case "CLAN":
-                    user.setCargo(Usuario.Cargo.CLAN);
-                    break;
-                case "UNIDAD":
-                    user.setCargo(Usuario.Cargo.UNIDAD);
-                    break;
-                case "TROPA":
-                    user.setCargo(Usuario.Cargo.TROPA);
-                    break;
-                case "MANADA":
-                    user.setCargo(Usuario.Cargo.MANADA);
-                    break;
-                case "CASTORES":
-                    user.setCargo(Usuario.Cargo.CASTORES);
-                    break;
-                default:
-                    break;
-            }
-        }
+        
+
         System.out.println("Modificando "+user.getEmail());
-        return editor.modificarDatosUsuario(user);
+        return editor.modificarDatosUsuario(user,cargo);
     }
 
     /**

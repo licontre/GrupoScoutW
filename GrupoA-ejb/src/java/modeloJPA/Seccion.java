@@ -7,12 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
 @Entity
+@NamedQuery(name="VerSecciones", query="select s from Seccion s")
 public class Seccion implements Serializable {
-
+    public enum Cargo {Castores,Manada,Tropa,Unidad,Clan,Scouter,Monitor,Secretaria};
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

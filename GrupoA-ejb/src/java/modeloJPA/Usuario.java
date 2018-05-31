@@ -43,9 +43,7 @@ public class Usuario implements Serializable {
     private String codigopostal;
     private String localidad;
     private String provincia;
-    public enum Cargo {CASTORES,MANADA,TROPA,UNIDAD,CLAN,SCOUTER,MONITOR,SECRETARIA};
-    @Enumerated(EnumType.STRING)
-    private Cargo cargo;
+  
     @Column(unique = true)
     private String email;
     private String password;
@@ -67,10 +65,17 @@ public class Usuario implements Serializable {
     @ManyToMany
     private List<Documento> documentos;
     //Este metodo es especifico para la tarea 2
-    public Usuario(String nombreusuario, String password, Cargo cargo,String nombre,String ap ){
+    
+        
+    public String getCargo(){
+        System.out.println("***************ssssssssssss**********"+lista.getNombre());
+        return lista.getNombre();
+    }
+
+    
+    public Usuario(String nombreusuario, String password,String nombre,String ap ){
         setNombreusuario(nombreusuario);
         setPassword(password);
-        setCargo(cargo);
         setApellidos(ap);
         setNombre(nombre);
         setProvincia("Malaga");
@@ -150,14 +155,7 @@ public class Usuario implements Serializable {
         this.calle = calle;
     }
 
-    
-    public Cargo getCargo(){
-        return cargo;
-    }
-    
-    public void setCargo(Cargo cargo){
-        this.cargo=cargo;
-    }
+
     public String getCodigopostal() {
         return codigopostal;
     }

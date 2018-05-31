@@ -17,7 +17,7 @@ import modeloJPA.Usuario;
 public interface EditarUsuario {
     
     public List<Usuario>getUsuarios();
-    public String modificarDatosUsuario(Usuario usu) throws CuentaRepetidaException;
+    public String modificarDatosUsuario(Usuario usu,String cargo) throws CuentaRepetidaException;
     public Usuario getUser();
     public void setUser(Usuario us);
     

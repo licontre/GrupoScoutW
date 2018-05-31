@@ -31,11 +31,11 @@ public class ControlAutorizacion implements Serializable {
     //falta terminarlo de implementar
     public String home() {
         String cad=null;
-         if(usuario.getCargo()==Usuario.Cargo.CASTORES){
+         if(usuario.getCargo()==Seccion.Cargo.Castores.toString()){
             cad="inicio.xhtml";
-        }else if(usuario.getCargo()==Usuario.Cargo.MONITOR){
+        }else if(usuario.getCargo()==Seccion.Cargo.Monitor.toString()){
             cad="inicio.xhtml";
-        }else if(usuario.getCargo()==Usuario.Cargo.SECRETARIA){
+        }else if(usuario.getCargo()==Seccion.Cargo.Secretaria.toString()){
             cad="secretaria.xhtml";
         }else{
             cad="login.xhtml";

@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.*;
 import modeloJPA.Usuario;
-import modeloJPA.Usuario.Cargo;
+import modeloJPA.Seccion.Cargo;
 import negocio.ContrasenaIncorrectaException;
 import negocio.CuentaInexistenteException;
 import negocio.CuentaRepetidaException;
@@ -50,10 +50,6 @@ public class Login implements Controlador, Serializable {
     
     public Login(){
         usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("castor", "castor", Cargo.CASTORES,"Juanito","Dominguez"));
-        usuarios.add(new Usuario("monitor", "monitor", Cargo.MONITOR,"Caroline","Ho"));
-        usuarios.add(new Usuario("admin", "admin", Cargo.SECRETARIA,"Luis","Castillo"));
-        usuarios.add(new Usuario("secretaria", "secretaria", Cargo.SECRETARIA,"Pepe","Wilfred"));
     }
     public void reset(){
         this.correo = null;

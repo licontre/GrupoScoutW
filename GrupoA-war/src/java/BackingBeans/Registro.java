@@ -19,7 +19,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import modeloJPA.Usuario;
-import modeloJPA.Usuario.Cargo;
+
 import modeloJPA.Usuario.Sexo;
 import negocio.*;
 
@@ -140,20 +140,6 @@ public class Registro implements Serializable{
                 this.usuario.setGenero(Sexo.MUJER);
             }else{
                 this.usuario.setGenero(Sexo.HOMBRE);
-            }
-
-            if(edad < 7){
-                this.usuario.setCargo(Cargo.CASTORES);
-            }else if(edad < 10){
-                this.usuario.setCargo(Cargo.MANADA);
-            }else if(edad < 13){
-                this.usuario.setCargo(Cargo.SCOUTER);
-            }else if(edad < 16){
-                this.usuario.setCargo(Cargo.UNIDAD);
-            }else if(edad < 19){
-                this.usuario.setCargo(Cargo.CLAN);
-            }else{
-                this.usuario.setCargo(Cargo.SECRETARIA);
             }
             
             negocio.registrarUsuario(this.usuario);

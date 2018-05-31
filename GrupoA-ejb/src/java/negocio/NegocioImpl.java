@@ -5,6 +5,10 @@
  */
 package negocio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.mail.Session;
@@ -12,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
+import modeloJPA.Seccion;
 import modeloJPA.Usuario;
 
 /**
@@ -36,16 +41,44 @@ public class NegocioImpl implements Negocio {
         Query cons = em.createNamedQuery("VerCorreo",Usuario.class);
         cons.setParameter("email",u.getEmail());
         List<Usuario> lis = cons.getResultList();
-
             for(Usuario user:lis){
                 System.out.println("-------------------->"+user.getNombreusuario());
                 throw new CuentaRepetidaException("Correo ya registrado.");
             }
-
-            em.persist(u);
-            System.out.println("Registrado "+u.getNombreusuario());
-
+        Query sec = em.createNamedQuery("VerSecciones",Seccion.class);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println("---------------------------"+edad(df.format(u.getFechanacimiento()))+"------------------------");
+        List<Seccion> seccion = sec.getResultList();
+        int i = 0;
+        if(seccion!=null){
+            while(i<seccion.size()&&edad(df.format(u.getFechanacimiento()))> seccion.get(i).getEdadmaxima()){
+                System.out.println(seccion.get(i).getEdadmaxima());
+                i++;
+            }
+        }
+        u.setLista(seccion.get(i));
+        em.persist(u);
+        System.out.println("Registrado "+u.getNombreusuario()+" -> "+seccion.get(0).getNombre());
     }
+    private int edad(String fecha_nac) {     //fecha_nac debe tener el formato dd/MM/yyyy
+   
+    Date fechaActual = new Date();
+    SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    String hoy = formato.format(fechaActual);
+    String[] dat1 = fecha_nac.split("/");
+    String[] dat2 = hoy.split("/");
+    int anos = Integer.parseInt(dat2[2]) - Integer.parseInt(dat1[2]);
+    int mes = Integer.parseInt(dat2[1]) - Integer.parseInt(dat1[1]);
+    if (mes < 0) {
+      anos = anos - 1;
+    } else if (mes == 0) {
+      int dia = Integer.parseInt(dat2[0]) - Integer.parseInt(dat1[0]);
+      if (dia > 0) {
+        anos = anos - 1;
+      }
+    }
+    return anos;
+  }
 
     @Override
     public void compruebaLogin(Usuario u)throws RegistroException{

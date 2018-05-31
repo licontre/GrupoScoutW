@@ -33,7 +33,7 @@
           <img class="card-img-top" src="imagenes/Secretaria/kazoo.png" alt="Card image cap"></img>
         <div class="card-body">
             <h5 class="card-title">#{user.nombre}</h5>
-            <p class="card-text" style="font-weight: 600">#{user.cargo}</p>
+            <p class="card-text" style="font-weight: 600">#{user.getCargo()}</p>
           <!-- Button trigger modal -->
             <h:form>
                 <h:commandButton value="Ver" action="modificaUsuarios.xhtml">

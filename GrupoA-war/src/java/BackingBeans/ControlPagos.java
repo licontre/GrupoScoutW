@@ -9,7 +9,7 @@ import java.util.List;
 import modeloJPA.Cuota;
 import modeloJPA.PagoCuota;
 import modeloJPA.Usuario;
-import modeloJPA.Usuario.Cargo;
+import modeloJPA.Seccion.Cargo;
 
 /**
  *
@@ -62,8 +62,8 @@ public class ControlPagos implements Serializable {
         List<PagoCuota> listac1= new ArrayList<PagoCuota>();
         List<PagoCuota> listac2= new ArrayList<PagoCuota>();
         
-        Usuario u1 = new Usuario("castor", "castor", Cargo.CASTORES,"Lola","Martin");
-        Usuario u2 = new Usuario ("admin", "admin", Cargo.SECRETARIA,"Roci","Casa");
+        Usuario u1 = new Usuario("castor", "castor","Lola","Martin");
+        Usuario u2 = new Usuario ("admin", "admin","Roci","Casa");
         
         Cuota c1 = new Cuota (1L, 100, "primera cuota", "inscripcion",listac1);
         

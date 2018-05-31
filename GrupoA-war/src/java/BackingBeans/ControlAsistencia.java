@@ -22,15 +22,15 @@ public class ControlAsistencia implements Serializable{
     
     public ControlAsistencia(){
         usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("castor", "castor", Usuario.Cargo.CASTORES,"Juanito","Velasco"));
-        usuarios.add(new Usuario("castor", "castor", Usuario.Cargo.CASTORES,"Alba","Perez"));
-        usuarios.add(new Usuario("castor", "castor", Usuario.Cargo.CASTORES,"Pablo","Paredes"));
-        usuarios.add(new Usuario("castor", "castor", Usuario.Cargo.CASTORES,"Luis","Garcia"));
-        usuarios.add(new Usuario("castor", "castor", Usuario.Cargo.CASTORES,"Maria","Torres"));
-        usuarios.add(new Usuario("castor", "castor", Usuario.Cargo.CASTORES,"Julia","Dominguez"));
-        usuarios.add(new Usuario("monitor", "monitor", Usuario.Cargo.MONITOR,"Caroline","Ho"));
-        usuarios.add(new Usuario("admin", "admin", Usuario.Cargo.MONITOR,"Luis","Castillo"));
-        usuarios.add(new Usuario("secretaria", "secretaria", Usuario.Cargo.SECRETARIA,"Pepe","Wilfred"));
+        usuarios.add(new Usuario("castor", "castor","Juanito","Velasco"));
+        usuarios.add(new Usuario("castor", "castor","Alba","Perez"));
+        usuarios.add(new Usuario("castor", "castor","Pablo","Paredes"));
+        usuarios.add(new Usuario("castor", "castor", "Luis","Garcia"));
+        usuarios.add(new Usuario("castor", "castor", "Maria","Torres"));
+        usuarios.add(new Usuario("castor", "castor", "Julia","Dominguez"));
+        usuarios.add(new Usuario("monitor", "monitor","Caroline","Ho"));
+        usuarios.add(new Usuario("admin", "admin","Luis","Castillo"));
+        usuarios.add(new Usuario("secretaria", "secretaria", "Pepe","Wilfred"));
     }
 
     /**

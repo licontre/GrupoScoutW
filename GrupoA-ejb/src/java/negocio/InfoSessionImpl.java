@@ -11,6 +11,7 @@ import javax.mail.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import modeloJPA.Seccion;
 import modeloJPA.Usuario;
 
 /**
@@ -39,9 +40,9 @@ public class InfoSessionImpl implements InfoSession{
         for(Usuario us : usu){
             if(us.getContrasenia().equals(passwd)){
                 user = us;
-                if(us.getCargo()==Usuario.Cargo.MONITOR){
+                if(us.getCargo()==Seccion.Cargo.Monitor.toString()){
                     return "inicio.xhtml";
-                }else if(us.getCargo()==Usuario.Cargo.SECRETARIA){
+                }else if(us.getCargo()==Seccion.Cargo.Secretaria.toString()){
                     return "secretaria.xhtml";
                 }else{
                     return "inicio.xhtml";
@@ -57,9 +58,9 @@ public class InfoSessionImpl implements InfoSession{
         return user;
     }
     private String getHome(){
-        if(user.getCargo()==Usuario.Cargo.MONITOR){
+        if(user.getCargo()==Seccion.Cargo.Monitor.toString()){
             return "inicio.xhtml";
-        }else if(user.getCargo()==Usuario.Cargo.SECRETARIA){
+        }else if(user.getCargo()==Seccion.Cargo.Secretaria.toString()){
             return "secretaria.xhtml";
         }else{
             return "inicio.xhtml";
