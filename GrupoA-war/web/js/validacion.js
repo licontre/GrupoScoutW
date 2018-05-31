@@ -113,10 +113,7 @@ function getNombreVista(){
     var path = window.location.pathname;
     var output = path.split("/");
     var bool=false;
-    if(output[3]==='registro.xhtml'){
-        bool=true;
-    }
-    if( output[3]==='login.xhtml'){
+    if(output[3]==='registro.xhtml' || output[3]==='login.xhtml'){
         bool=true;
     }
     return bool;

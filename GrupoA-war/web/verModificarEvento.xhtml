@@ -13,9 +13,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css"></script>
 
     </ui:define>
-    <ui:define name="title">Crear evento</ui:define>
+    <ui:define name="title">Modificar Evento</ui:define>
     <ui:define name="content">
-        <c:set var="event" value="#{manejadorEventos.evento}" />     
+       <!-- <c:set var="event" value="{manejadorEventos.evento}" />  -->   
         <div align="center">
             <h:form class="form-horizontal">
                 <div class="form-group">
@@ -72,8 +72,8 @@
                         </h:selectOneMenu>
                     </div>
                 </div>
-                <h:button value="Volver" outcome="inicio.xhtml"/>
-                <h:commandButton value="Guardar" action="#{manejadorEventos.crearEvento()}" />
+                <h:button value="Cancelar" outcome="verMisEventos.xhtml"/>
+                <h:commandButton value="Modificar" action="#{manejadorEventos.modificarEvento(event)}" />
             </h:form>
         </div>
     </ui:define>

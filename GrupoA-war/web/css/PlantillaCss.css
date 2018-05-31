@@ -36,6 +36,7 @@ html, body {
     font-family: Open Sans;
     font-weight: bold;
     color: white;
+    max-height: 50px;
 }
 
 #navegar input:hover{
@@ -54,6 +55,7 @@ html, body {
     padding: 5px;
     font-weight: bold;
     font-family: Open Sans;
+    max-height: 50px;
 }
 
 .footer {
@@ -127,4 +129,8 @@ html, body {
 .my-row{
     height: 75vh;
     margin-bottom: 100px;
+}
+
+.navbar { 
+  max-height: 50px;
 }

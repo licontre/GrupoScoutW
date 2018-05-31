@@ -14,11 +14,11 @@
             </div>
         </div>
         <c:choose>
-            <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
-                <c:set var="user" value="#{controlAutorizacion.usuario2}"/>
+            <c:when test="#{login.user.cargo=='SECRETARIA'}">
+                <c:set var="user" value="#{login.user}"/>
             </c:when>
             <c:otherwise>
-                <c:set var="user" value="#{controlAutorizacion.usuario}"/>
+                <c:set var="user" value="#{login.user}"/>
             </c:otherwise>
         </c:choose>
 
@@ -36,7 +36,8 @@
                         <td>Nombre:</td>
                         <td>
                             <c:choose>
-                                <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                <c:when test="#{user.cargo=='SECRETARIA'}">
+                                    <h:form>
                                     <h:inputText value="#{user.nombre}"/>
                                 </c:when>
                                 <c:otherwise>
@@ -49,7 +50,7 @@
                         <td>Apellidos</td>
                         <td>
                             <c:choose>
-                                <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                <c:when test="#{user.cargo=='SECRETARIA'}">
                                     <h:inputText value="#{user.apellidos}"/>
                                 </c:when>
                                 <c:otherwise>
@@ -63,7 +64,7 @@
                         <td>Email:</td>
                         <td>
                             <c:choose>
-                                <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                <c:when test="#{user.cargo=='SECRETARIA'}">
                                     <h:inputText value="#{user.email}"/>
                                 </c:when>
                                 <c:otherwise>
@@ -73,32 +74,17 @@
 
                         </td>
                     </tr>
-                    <c:if test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                    <c:if test="#{user.cargo=='SECRETARIA'}">
                         <tr>
                             <td>Alias</td>
                             <td><h:inputText value="#{user.nombreusuario}"/></td>
                         </tr>
                     </c:if>    
-                    
-                        <tr>
-                            <td>Fecha de entrada:</td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
-                                        <h:inputText value="#{user.fechaentrada}"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <h:outputText value="#{user.fechaentrada}"/>
-                                    </c:otherwise>  
-                                </c:choose>
-
-                            </td>
-                        </tr>
                         <tr>
                             <td>Dni:</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
                                         <h:inputText value="#{user.dni}"/>
                                     </c:when>
                                     <c:otherwise>
@@ -112,8 +98,98 @@
                             <td>Fecha de nacimiento:</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
-                                        <h:inputText value="#{user.fechanacimiento}"/>
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
+                                         <div class="form-group">
+                                            <label class="control-label col-sm-2" for="fecha">Día / Mes / Año:</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <h:selectOneMenu value = "#{login.dia}" class="form-control" > 
+                                                            <f:selectItem itemValue = "1" itemLabel = "1" /> 
+                                                            <f:selectItem itemValue = "2" itemLabel = "2" />
+                                                            <f:selectItem itemValue = "3" itemLabel = "3" /> 
+                                                            <f:selectItem itemValue = "4" itemLabel = "4" /> 
+                                                            <f:selectItem itemValue = "5" itemLabel = "5" /> 
+                                                            <f:selectItem itemValue = "6" itemLabel = "6" /> 
+                                                            <f:selectItem itemValue = "7" itemLabel = "7" /> 
+                                                            <f:selectItem itemValue = "8" itemLabel = "8" /> 
+                                                            <f:selectItem itemValue = "9" itemLabel = "9" /> 
+                                                            <f:selectItem itemValue = "10" itemLabel = "10" /> 
+                                                            <f:selectItem itemValue = "11" itemLabel = "11" /> 
+                                                            <f:selectItem itemValue = "12" itemLabel = "12" /> 
+                                                            <f:selectItem itemValue = "13" itemLabel = "13" /> 
+                                                            <f:selectItem itemValue = "14" itemLabel = "14" /> 
+                                                            <f:selectItem itemValue = "15" itemLabel = "15" /> 
+                                                            <f:selectItem itemValue = "16" itemLabel = "16" /> 
+                                                            <f:selectItem itemValue = "17" itemLabel = "17" /> 
+                                                            <f:selectItem itemValue = "18" itemLabel = "18" /> 
+                                                            <f:selectItem itemValue = "19" itemLabel = "19" /> 
+                                                            <f:selectItem itemValue = "20" itemLabel = "20" /> 
+                                                            <f:selectItem itemValue = "21" itemLabel = "21" /> 
+                                                            <f:selectItem itemValue = "22" itemLabel = "22" /> 
+                                                            <f:selectItem itemValue = "23" itemLabel = "23" /> 
+                                                            <f:selectItem itemValue = "24" itemLabel = "24" /> 
+                                                            <f:selectItem itemValue = "25" itemLabel = "25" /> 
+                                                            <f:selectItem itemValue = "26" itemLabel = "26" /> 
+                                                            <f:selectItem itemValue = "27" itemLabel = "27" /> 
+                                                            <f:selectItem itemValue = "28" itemLabel = "28" /> 
+                                                            <f:selectItem itemValue = "29" itemLabel = "29" /> 
+                                                            <f:selectItem itemValue = "30" itemLabel = "30" /> 
+                                                            <f:selectItem itemValue = "31" itemLabel = "31" /> 
+                                                        </h:selectOneMenu>
+                                                    </span>
+                                                    <span class="input-group-btn"></span>
+                                                    <span class="input-group-btn">
+                                                        <h:selectOneMenu value = "#{login.mes}" class="form-control"> 
+                                                            <f:selectItem itemValue = "01" itemLabel = "Enero" /> 
+                                                            <f:selectItem itemValue = "02" itemLabel = "Febrero" />
+                                                            <f:selectItem itemValue = "03" itemLabel = "Marzo" /> 
+                                                            <f:selectItem itemValue = "04" itemLabel = "Abril" /> 
+                                                            <f:selectItem itemValue = "05" itemLabel = "Mayo" /> 
+                                                            <f:selectItem itemValue = "06" itemLabel = "Junio" /> 
+                                                            <f:selectItem itemValue = "07" itemLabel = "Julio" /> 
+                                                            <f:selectItem itemValue = "08" itemLabel = "Agosto" /> 
+                                                            <f:selectItem itemValue = "09" itemLabel = "Septiembre" /> 
+                                                            <f:selectItem itemValue = "10" itemLabel = "Octubre" /> 
+                                                            <f:selectItem itemValue = "11" itemLabel = "Noviembre" /> 
+                                                            <f:selectItem itemValue = "12" itemLabel = "Diciembre" /> 
+                                                        </h:selectOneMenu>
+                                                    </span>
+                                                    <span class="input-group-btn"> </span>
+                                                    <span class="input-group-btn">
+                                                        <h:selectOneMenu value = "#{login.anio}" class="form-control"> 
+                                                            <f:selectItem itemValue = "2011" itemLabel = "2011" /> 
+                                                            <f:selectItem itemValue = "2010" itemLabel = "2010" /> 
+                                                            <f:selectItem itemValue = "2009" itemLabel = "2009" /> 
+                                                            <f:selectItem itemValue = "2008" itemLabel = "2008" /> 
+                                                            <f:selectItem itemValue = "2007" itemLabel = "2007" /> 
+                                                            <f:selectItem itemValue = "2006" itemLabel = "2006" /> 
+                                                            <f:selectItem itemValue = "2005" itemLabel = "2005" /> 
+                                                            <f:selectItem itemValue = "2004" itemLabel = "2004" /> 
+                                                            <f:selectItem itemValue = "2003" itemLabel = "2003" /> 
+                                                            <f:selectItem itemValue = "2002" itemLabel = "2002" /> 
+                                                            <f:selectItem itemValue = "2001" itemLabel = "2001" /> 
+                                                            <f:selectItem itemValue = "2000" itemLabel = "2000" /> 
+                                                            <f:selectItem itemValue = "1999" itemLabel = "1999" /> 
+                                                            <f:selectItem itemValue = "1998" itemLabel = "1998" />
+                                                            <f:selectItem itemValue = "1997" itemLabel = "1997" />
+                                                            <f:selectItem itemValue = "1996" itemLabel = "1996" />
+                                                            <f:selectItem itemValue = "1995" itemLabel = "1995" />
+                                                            <f:selectItem itemValue = "1994" itemLabel = "1994" /> 
+                                                            <f:selectItem itemValue = "1993" itemLabel = "1993" /> 
+                                                            <f:selectItem itemValue = "1992" itemLabel = "1992" /> 
+                                                            <f:selectItem itemValue = "1991" itemLabel = "1991" /> 
+                                                            <f:selectItem itemValue = "1990" itemLabel = "1990" /> 
+                                                            <f:selectItem itemValue = "1989" itemLabel = "1989" />
+                                                            <f:selectItem itemValue = "1988" itemLabel = "1988" />
+                                                            <f:selectItem itemValue = "1987" itemLabel = "1987" />
+                                                            <f:selectItem itemValue = "1986" itemLabel = "1986" />
+
+                                                        </h:selectOneMenu>
+                                                    </span>
+                                                  </div>	
+                                            </div>
+                                        </div>
                                     </c:when>
                                     <c:otherwise>
                                         <h:outputText value="#{user.fechanacimiento}"/>
@@ -126,7 +202,7 @@
                             <td>Dirección postal:</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
                                         <h:inputText value="#{user.calle}"/>
                                     </c:when>
                                     <c:otherwise>
@@ -140,7 +216,7 @@
                             <td>Código postal:</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
                                         <h:inputText value="#{user.codigopostal}"/>
                                     </c:when>
                                     <c:otherwise>
@@ -154,7 +230,7 @@
                             <td>Localidad:</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
                                         <h:inputText value="#{user.localidad}"/>
                                     </c:when>
                                     <c:otherwise>
@@ -167,7 +243,7 @@
                             <td>Provincia:</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
                                         <h:inputText value="#{user.provincia}"/>
                                     </c:when>
                                     <c:otherwise>
@@ -180,8 +256,9 @@
                             <td>Sección</td>
                             <td>
                                 <c:choose>
-                                    <c:when test="#{controlAutorizacion.usuario.cargo=='SECRETARIA'}">
-                                        <h:inputText value="#{user.cargo}"/>
+                                    <c:when test="#{user.cargo=='SECRETARIA'}">
+                                        <h:commandButton value="Guardar" type="submit"  action="#{login.modificar()}"></h:commandButton>
+                                        </h:form>
                                     </c:when>
                                     <c:otherwise>
                                         <h:outputText value="#{user.cargo}"/>
@@ -189,6 +266,7 @@
                                 </c:choose>
                             </td>
                         </tr>
+                    </h:form>
                 </tbody>
             </table>
         </div>

@@ -1,0 +1,226 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">   
+    <ui:define name="title">Mi Perfil</ui:define>
+    <ui:define name="content">
+        <br/>
+        <div class="media">
+            <div class="col-md-4"> 
+            <img class="img-circle" src="imagenes/fotos_usuarios/castor.jpg" alt="Generic placeholder image" style="width:80%"></img>
+            </div>
+        </div>
+            <div class="col-md-4">
+                <h1>Perfil de  <h:outputText value="#{editor.user.nombreusuario}"/></h1>
+            </div>
+            <br/>
+            
+            <div class="col-md-4">
+                <h3>Datos personales:</h3>
+            </div>
+            <div class="container">
+            <h:form>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nombre:</td>
+                  <td><h:inputText value="#{editor.user.nombre}"/></td>
+                </tr>
+                <tr>
+                  <td>Apellidos</td>
+                  <td><h:inputText value="#{editor.user.apellidos}"/></td>
+                </tr>
+                <tr>
+                  <td>Alias:</td>
+                  <td><h:inputText value="#{editor.user.nombreusuario}"/></td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td><h:inputText value="#{editor.user.email}"/></td>
+                </tr>
+                <tr>
+                  <td>Dni:</td>
+                  <td><h:inputText value="#{editor.user.dni}"/></td>
+                </tr>
+                <tr>
+                  <td>Fecha de nacimiento:</td>
+                  <td><div class="input-group">
+                                <span class="input-group-btn">
+                                    <h:selectOneMenu value = "#{editor.dia}" class="form-control" > 
+                                        <f:selectItem itemValue = "01" itemLabel = "1" /> 
+                                        <f:selectItem itemValue = "02" itemLabel = "2" />
+                                        <f:selectItem itemValue = "03" itemLabel = "3" /> 
+                                        <f:selectItem itemValue = "04" itemLabel = "4" /> 
+                                        <f:selectItem itemValue = "05" itemLabel = "5" /> 
+                                        <f:selectItem itemValue = "06" itemLabel = "6" /> 
+                                        <f:selectItem itemValue = "07" itemLabel = "7" /> 
+                                        <f:selectItem itemValue = "08" itemLabel = "8" /> 
+                                        <f:selectItem itemValue = "09" itemLabel = "9" /> 
+                                        <f:selectItem itemValue = "10" itemLabel = "10" /> 
+                                        <f:selectItem itemValue = "11" itemLabel = "11" /> 
+                                        <f:selectItem itemValue = "12" itemLabel = "12" /> 
+                                        <f:selectItem itemValue = "13" itemLabel = "13" /> 
+                                        <f:selectItem itemValue = "14" itemLabel = "14" /> 
+                                        <f:selectItem itemValue = "15" itemLabel = "15" /> 
+                                        <f:selectItem itemValue = "16" itemLabel = "16" /> 
+                                        <f:selectItem itemValue = "17" itemLabel = "17" /> 
+                                        <f:selectItem itemValue = "18" itemLabel = "18" /> 
+                                        <f:selectItem itemValue = "19" itemLabel = "19" /> 
+                                        <f:selectItem itemValue = "20" itemLabel = "20" /> 
+                                        <f:selectItem itemValue = "21" itemLabel = "21" /> 
+                                        <f:selectItem itemValue = "22" itemLabel = "22" /> 
+                                        <f:selectItem itemValue = "23" itemLabel = "23" /> 
+                                        <f:selectItem itemValue = "24" itemLabel = "24" /> 
+                                        <f:selectItem itemValue = "25" itemLabel = "25" /> 
+                                        <f:selectItem itemValue = "26" itemLabel = "26" /> 
+                                        <f:selectItem itemValue = "27" itemLabel = "27" /> 
+                                        <f:selectItem itemValue = "28" itemLabel = "28" /> 
+                                        <f:selectItem itemValue = "29" itemLabel = "29" /> 
+                                        <f:selectItem itemValue = "30" itemLabel = "30" /> 
+                                        <f:selectItem itemValue = "31" itemLabel = "31" /> 
+                                    </h:selectOneMenu>
+                                </span>
+                                <span class="input-group-btn"></span>
+                                <span class="input-group-btn">
+                                    <h:selectOneMenu value = "#{editor.mes}" class="form-control"> 
+                                        <f:selectItem itemValue = "01" itemLabel = "Enero" /> 
+                                        <f:selectItem itemValue = "02" itemLabel = "Febrero" />
+                                        <f:selectItem itemValue = "03" itemLabel = "Marzo" /> 
+                                        <f:selectItem itemValue = "04" itemLabel = "Abril" /> 
+                                        <f:selectItem itemValue = "05" itemLabel = "Mayo" /> 
+                                        <f:selectItem itemValue = "06" itemLabel = "Junio" /> 
+                                        <f:selectItem itemValue = "07" itemLabel = "Julio" /> 
+                                        <f:selectItem itemValue = "08" itemLabel = "Agosto" /> 
+                                        <f:selectItem itemValue = "09" itemLabel = "Septiembre" /> 
+                                        <f:selectItem itemValue = "10" itemLabel = "Octubre" /> 
+                                        <f:selectItem itemValue = "11" itemLabel = "Noviembre" /> 
+                                        <f:selectItem itemValue = "12" itemLabel = "Diciembre" /> 
+                                    </h:selectOneMenu>
+                                </span>
+                                <span class="input-group-btn"> </span>
+                                <span class="input-group-btn">
+                                    <h:selectOneMenu value = "#{editor.anio}" class="form-control"> 
+                                        <f:selectItem itemValue = "2011" itemLabel = "2011" /> 
+                                        <f:selectItem itemValue = "2010" itemLabel = "2010" /> 
+                                        <f:selectItem itemValue = "2009" itemLabel = "2009" /> 
+                                        <f:selectItem itemValue = "2008" itemLabel = "2008" /> 
+                                        <f:selectItem itemValue = "2007" itemLabel = "2007" /> 
+                                        <f:selectItem itemValue = "2006" itemLabel = "2006" /> 
+                                        <f:selectItem itemValue = "2005" itemLabel = "2005" /> 
+                                        <f:selectItem itemValue = "2004" itemLabel = "2004" /> 
+                                        <f:selectItem itemValue = "2003" itemLabel = "2003" /> 
+                                        <f:selectItem itemValue = "2002" itemLabel = "2002" /> 
+                                        <f:selectItem itemValue = "2001" itemLabel = "2001" /> 
+                                        <f:selectItem itemValue = "2000" itemLabel = "2000" /> 
+                                        <f:selectItem itemValue = "1999" itemLabel = "1999" /> 
+                                        <f:selectItem itemValue = "1998" itemLabel = "1998" />
+                                        <f:selectItem itemValue = "1997" itemLabel = "1997" />
+                                        <f:selectItem itemValue = "1996" itemLabel = "1996" />
+                                        <f:selectItem itemValue = "1995" itemLabel = "1995" />
+                                        <f:selectItem itemValue = "1994" itemLabel = "1994" /> 
+                                        <f:selectItem itemValue = "1993" itemLabel = "1993" /> 
+                                        <f:selectItem itemValue = "1992" itemLabel = "1992" /> 
+                                        <f:selectItem itemValue = "1991" itemLabel = "1991" /> 
+                                        <f:selectItem itemValue = "1990" itemLabel = "1990" /> 
+                                        <f:selectItem itemValue = "1989" itemLabel = "1989" />
+                                        <f:selectItem itemValue = "1988" itemLabel = "1988" />
+                                        <f:selectItem itemValue = "1987" itemLabel = "1987" />
+                                        <f:selectItem itemValue = "1986" itemLabel = "1986" />
+                                    </h:selectOneMenu>
+                                </span>
+                              </div>	</td>
+                </tr>
+                <tr>
+                  <td>Dirección postal:</td>
+                  <td><h:inputText value="#{editor.user.calle}"/></td>
+                </tr>
+                <tr>
+                  <td>Código postal:</td>
+                  <td><h:inputText value="#{editor.user.codigopostal}"/></td>
+                </tr>
+                <tr>
+                  <td>Localidad:</td>
+                  <td><h:inputText value="#{editor.user.localidad}"/></td>
+                </tr>
+                <tr>
+                  <td>Provincia:</td>
+                  <td><h:inputText value="#{editor.user.provincia}"/></td>
+                </tr>
+                  <tr>
+                  <td>Rol:</td>
+                  <td>
+                      <span class="input-group-btn">
+                        <h:selectOneMenu value = "#{editor.cargo}" class="form-control">
+                            <f:selectItem itemValue = "null" itemLabel = "" /> 
+                            <f:selectItem itemValue = "CASTORES" itemLabel = "CASTORES" /> 
+                            <f:selectItem itemValue = "MANADA" itemLabel = "MANADA" />
+                            <f:selectItem itemValue = "TROPA" itemLabel = "TROPA" />
+                            <f:selectItem itemValue = "UNIDAD" itemLabel = "UNIDAD" />
+                            <f:selectItem itemValue = "CLAN" itemLabel = "CLAN" />
+                            <f:selectItem itemValue = "SCOUTER" itemLabel = "SCOUTER" />
+                            <f:selectItem itemValue = "MONITOR" itemLabel = "MONITOR" />
+                            <f:selectItem itemValue = "SECRETARIA" itemLabel = "SECRETARIA" />
+                         </h:selectOneMenu>
+                      </span>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+                    <h:commandButton value="Guardar" type="submit"  action="#{editor.editado()}"></h:commandButton>
+                </h:form>  
+            </div>
+        <br/>
+            <div class="container"> 
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Cuotas actuales</th>
+                        <th scope="col">Importe</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                      </tr>
+                    </thead>
+           <ui:repeat value="#{controlPagos.listaCuotas}" var="cuota">
+                    <tbody>
+                      <tr>
+                        <th scope="row"><h:outputText value="#{cuota.id}"/></th>
+                        <td><h:outputText value="#{cuota.importe}"/></td>
+                        <td><h:outputText value="#{cuota.nombre}"/></td>
+                        <td><h:outputText value="#{cuota.descripcion}"/></td>
+                      </tr>
+                    </tbody>
+            </ui:repeat>   
+                  </table>
+            </div>
+              <br/>
+              <div class="container">
+              <table class="table col-md-4">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Desglose de pagos</th>
+                        <th scope="col">Fecha</th>
+                      </tr>
+                    </thead>
+                        <ui:repeat value="#{controlPagos.listaPagosCuota}" var="pagos">
+                            <tbody>
+                              <tr>
+                                  <th scope="row"><h:outputText value="#{pagos.id}"/></th>
+                                <td><h:outputText value="#{pagos.fecha}"/></td>
+                              </tr>
+
+                            </tbody>
+                        </ui:repeat>
+                  </table>
+              </div>
+    </ui:define>
+</ui:composition>

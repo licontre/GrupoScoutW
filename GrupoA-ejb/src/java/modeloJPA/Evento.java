@@ -1,19 +1,27 @@
 package modeloJPA;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findAll", query = "select e from Evento e")
+})
 public class Evento implements Serializable {
 
     private static long serialVersionUID = 1L;
@@ -26,111 +34,119 @@ public class Evento implements Serializable {
     private String localizacion;
     private float precio;
     private float presupuesto;
+    @Column(length = 20000)
     private String descripcion;
-    @ManyToMany(mappedBy="eventos")
-    private List<Seccion> secciones;
-    @OneToMany(mappedBy="comentarios")
+    @ManyToOne
+    private Seccion seccion;
+    @OneToMany(mappedBy = "comentarios")
     private List<Comentario> comentarios;
-    @OneToMany(mappedBy="asistencia")
+    @OneToMany(mappedBy = "asistencia")
     private List<Asistencia> asistencia;
-    @OneToMany(mappedBy="eventos")
+    @OneToMany(mappedBy = "eventos")
     private List<Documento> documentos;
 
     public Evento() {
     }
-    
-    
-    public Evento(Long id, String nombre, Date fecha, String localizacion, float precio, float presupuesto, String descripcion){
-        this.id=id;
-        this.nombre=nombre;
-        this.fecha=fecha;
-        this.localizacion=localizacion;
-        this.precio=precio;
-        this.presupuesto=presupuesto;
-        this.descripcion=descripcion;
+
+    public Evento(Long id, String nombre, Date fecha, String localizacion, float precio, float presupuesto, String descripcion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.localizacion = localizacion;
+        this.precio = precio;
+        this.presupuesto = presupuesto;
+        this.descripcion = descripcion;
     }
-    
-    public List<Documento> getDocumentos(){
+
+    public List<Documento> getDocumentos() {
         return documentos;
     }
-    public void setDocumentos(List<Documento> d){
+
+    public void setDocumentos(List<Documento> d) {
         this.documentos = d;
     }
-    
-    public List<Comentario> getComentarios(){
+
+    public List<Comentario> getComentarios() {
         return comentarios;
     }
-    public void setComentarios(List<Comentario> n){
+
+    public void setComentarios(List<Comentario> n) {
         this.comentarios = n;
-    }   
-    
-    public List<Asistencia> getAsistencia(){
+    }
+
+    public List<Asistencia> getAsistencia() {
         return asistencia;
     }
-    public void setAsistencia(List<Asistencia> n){
+
+    public void setAsistencia(List<Asistencia> n) {
         this.asistencia = n;
-    }        
-    
-    public List<Seccion> getSecciones(){
-        return secciones;
     }
-    public void setSecciones(List<Seccion> n){
-        this.secciones = n;
-    }    
-    
-    public String getNombre (){
+
+    public String getNombre() {
         return nombre;
     }
-    public void setNombre (String n){
+
+    public void setNombre(String n) {
         this.nombre = n;
     }
-    
-    public Date getFecha (){
+
+    public Date getFecha() {
         return fecha;
     }
-    public void setFecha (Date n){
+
+    public String fechaFormateada() {
+        SimpleDateFormat dateFormatNew = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormatNew.format(fecha);
+    }
+
+    public void setFecha(Date n) {
         this.fecha = n;
     }
-    
-    public String getLocalizacion (){
+
+    public String getLocalizacion() {
         return localizacion;
     }
-    public void setLocalizacion (String n){
+
+    public void setLocalizacion(String n) {
         this.localizacion = n;
     }
-    
-    public float getPrecio (){
+
+    public float getPrecio() {
         return precio;
     }
-    public void setPrecio (float n){
+
+    public void setPrecio(float n) {
         this.precio = n;
     }
-    
-    public float getPresupuesto(){
+
+    public float getPresupuesto() {
         return presupuesto;
     }
-    public void setPresupuesto(float n){
+
+    public void setPresupuesto(float n) {
         this.presupuesto = n;
     }
-   
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public String getDescripcion (){
+
+    public String getDescripcion() {
         return descripcion;
     }
-    
-    public void setDescripcion(String descripcion){
-        this.descripcion=descripcion;
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
-    
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
+
     public static void setSerialVersionUID(long aSerialVersionUID) {
         serialVersionUID = aSerialVersionUID;
     }
@@ -144,7 +160,7 @@ public class Evento implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        
+
         if (!(object instanceof Evento)) {
             return false;
         }
@@ -159,5 +175,19 @@ public class Evento implements Serializable {
     public String toString() {
         return "grupoScouts.Evento[ id=" + getId() + " ]";
     }
-    
+
+    /**
+     * @return the seccion
+     */
+    public Seccion getSeccion() {
+        return seccion;
+    }
+
+    /**
+     * @param seccion the seccion to set
+     */
+    public void setSeccion(Seccion seccion) {
+        this.seccion = seccion;
+    }
+
 }

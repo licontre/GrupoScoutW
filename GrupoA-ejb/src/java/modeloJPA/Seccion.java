@@ -24,7 +24,7 @@ public class Seccion implements Serializable {
     private List<Usuario> lista;
     @OneToMany(mappedBy="seccion")
     private List<Historial> historial;
-    @ManyToMany
+    @OneToMany (mappedBy="seccion")
     private List<Evento> eventos;    
     
     public List<Evento> getEventos(){

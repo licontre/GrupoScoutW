@@ -12,7 +12,9 @@
         <link href="./css/index.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-        <script type='text/javascript' src="./JS/jquery.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"/>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/additional-methods.js"/>
         <script type='text/javascript' src="./js/validacion.js"/>
         <!--Bootstrap-->
         <link href="css/bootstrap.css" rel="stylesheet"/>
@@ -64,9 +66,7 @@
             </div>
         </nav>
         <div id="cuerpoPlantilla">
-            <c:if test="true">
                 <h:graphicImage id="myImage" class="img-responsive" value="/imagenes/Plantilla/Foto_plantilla.jpg" width="100%"/>
-            </c:if>
             <div id="content" class="center">
                 <ui:insert name="content"> Contenido </ui:insert>
             </div>           
@@ -76,16 +76,18 @@
             <h:link class="btn-floating btn-lg btn-yt"><i class="fa fa-youtube"></i></h:link>
             <h:link class="btn-floating btn-lg btn-yt"><i class="fa fa-google"></i></h:link>
         </div>
-        <div id="pie" class="panel-footer">
-            <div id="footer-left"> Grupo Scout 39 Santo Angel - Málaga  </div>   
-            <div id="footer-right">   Desing by Grupo A - SII </div>
-        </div>
+        <footer class="footer">
+            <div id="pie" class="panel-footer form-row">
+                <div id="footer-left" class="col-6"> Grupo Scout 39 Santo Angel - Málaga  </div>   
+                <div id="footer-right" class="col-6">   Desing by Grupo A - SII </div>
+            </div>
+        </footer>
         <script>
             $(document).ready(function () {
                 $("#btn_info").attr("data-toggle", "dropdown");
 
             });
-            if(getNombreVista()){
+            if (getNombreVista()) {
                 document.getElementById("myImage").style.display = "none";
                 document.getElementById("social-btn").style.display = "none";
             }
