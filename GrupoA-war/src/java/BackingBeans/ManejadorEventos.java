@@ -15,7 +15,6 @@ import javax.inject.Inject;
 import modeloJPA.Evento;
 import negocio.Eventos;
 
-
 /**
  *
  * @author PC
@@ -31,38 +30,33 @@ public class ManejadorEventos implements Serializable {
     private String loc;
     private float precio, pres;
     private String dsc;
-   
+
     private int idSeccion;
-    
+
     @Inject
     private Eventos eventEJB;
-    
+
+    public ManejadorEventos() {
+
+    }
 
     public void eliminarEvento(Evento event) {
         eventEJB.eliminar(event);
     }
 
-    public void crearEvento() {       
-        Evento aux=new Evento();
+    public void crearEvento() {
+        Evento aux = new Evento();
         aux.setNombre(nombreEvento);
         aux.setFecha(fecha);
         aux.setDescripcion(dsc);
         aux.setLocalizacion(loc);
         aux.setPrecio(precio);
         aux.setPresupuesto(pres);
-        eventEJB.annadir(aux,idSeccion);
-    }
-    
-    public void modificarEvento(Evento event){
-        eventEJB.moficar(event);
-    }
-    
-    public void reset (){
-        
+        eventEJB.annadir(aux, idSeccion);
     }
 
-    public ManejadorEventos() {
-        
+    public void modificarEvento(Evento event) {
+        eventEJB.moficar(event);
     }
 
     public List<Evento> getEventos() {
@@ -90,8 +84,6 @@ public class ManejadorEventos implements Serializable {
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
-
-    
 
     /**
      * @return the loc

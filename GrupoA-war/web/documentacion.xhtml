@@ -12,26 +12,52 @@
     <div class="col-11 mx-sm-5 mb-5 text-center">
         <h:form>
             <h:dataTable id="tabla" class="table table-striped" var="doc" value="#{manejadorDocumentos.documentos}">
+               
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Nombre"></h:outputText>
                     </f:facet>
                     <h:outputText value="#{doc.nombre}"></h:outputText>
                 </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Tipo"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{doc.tipo}"></h:outputText>
+                </h:column>
+                
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Estado"></h:outputText>
                     </f:facet>
                     <h:outputText value="#{doc.estado}"></h:outputText>
                 </h:column>
+                
                 <h:column>
-                    <h:commandButton value="Editar" class="btn btn-primary" action="/editardocumentoS.xhtml">
+                    <h:commandButton value="Editar" class="btn btn-primary" action="/editardocumento.xhtml">
                         <f:actionListener binding="#{manejadorDocumentos.setDocumento(doc)}"/>
                     </h:commandButton>
                 </h:column>
+                
+                <h:column>
+                    <h:commandButton value="Eliminar" class="btn btn-primary"  action="#{manejadorDocumentos.eliminar()}">
+                        <f:actionListener binding="#{manejadorDocumentos.setDocumento(doc)}"/>
+                    </h:commandButton>
+                </h:column>
+                
            </h:dataTable>
+            
+            <div class="container" align="center">
+                <h:commandButton value="Nuevo documento" type="submit" action="/creardocumento.xhtml"></h:commandButton>
+            </div>
+            
+            
         </h:form>
+        
+        
+        
     </div>
-  <script src="JS/buscador.js"></script>
+
 </ui:define>
 </ui:composition>

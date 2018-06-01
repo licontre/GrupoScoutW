@@ -31,7 +31,7 @@
                         <f:facet name="header">Precio</f:facet>
                             #{event.precio}
                     </h:column>
-                    <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
+                    <c:if test="#{login.user.lista.id==6}">
                     <h:column>
                         <f:facet name="header">Presuspuesto</f:facet>
                             #{event.presupuesto}
@@ -41,7 +41,7 @@
                         <f:facet name="header">Fecha</f:facet>
                             #{event.fechaFormateada()}
                     </h:column>
-                    <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
+                    <c:if test="#{login.user.lista.id==6}">
                         <h:column>
                             <f:facet name="header"></f:facet>                 
                             <h:commandButton class="btn btn-default btn-block" value="Eliminar" action="#{manejadorEventos.eliminarEvento(event)}"/>

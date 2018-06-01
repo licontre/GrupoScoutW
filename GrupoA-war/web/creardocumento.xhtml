@@ -13,7 +13,7 @@
         </h:head>
         <div id="tag-light-grey">
             <div class="tag-light-grey container">
-                <h1>Editar #{doc.nombre}</h1>  
+                <h1>Crear documento</h1>  
             </div>
         </div>
         <div id="tag-light-grey">
@@ -31,7 +31,7 @@
 			<label class="control-label col-sm-2" for="fecha">Estado:</label>
 			<div class="col-sm-10">
                             <div class="input-group col-md-4">
-				<h:selectOneMenu value = "#{manejadorDocumentos.documento.estado}" class="form-control"> 
+                                <h:selectOneMenu value = "#{manejadorDocumentos.documento.estado}" class="form-control"> 
                                     <f:selectItem itemValue = "Enviado" itemLabel = "Enviado" />  
                                     <f:selectItem itemValue = "Modificándose" itemLabel = "Modificándose" /> 
                                     <f:selectItem itemValue = "Actualizado" itemLabel = "Actualizado" />
@@ -58,7 +58,7 @@
                     
                     
                     <br/>
-                    <h:commandButton value="Guardar" type="submit" action="#{manejadorDocumentos.modificar()}"></h:commandButton>
+                    <h:commandButton value="Guardar" type="submit" action="#{manejadorDocumentos.anadirDoc()}"></h:commandButton>
                     <h:commandButton value="Cancelar" type="reset"></h:commandButton>
                 </h:form>
             </div>

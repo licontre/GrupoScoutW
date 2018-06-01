@@ -52,7 +52,7 @@ public class Eventos {
 
     public List<Evento> todosEventos() {
         Query q = em.createNamedQuery("findAll");
-        return null;
+        return q.getResultList();
     }
 
 }
