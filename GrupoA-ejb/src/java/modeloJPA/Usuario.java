@@ -64,7 +64,7 @@ public class Usuario implements Serializable {
     private Seccion lista;   
     @ManyToMany
     private List<Documento> documentos;
-    //Este metodo es especifico para la tarea 2
+    
     
         
     public String getCargo(){

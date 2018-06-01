@@ -16,6 +16,8 @@ import javax.inject.Inject;
 
 import javax.servlet.http.Part;
 import modeloJPA.Documento;
+import negocio.GestionDocs;
+import negocio.GestionDocsImpl;
 
 
 
@@ -32,21 +34,27 @@ public class ManejadorDocumentos implements Serializable {
     private Documento documento;
     private Part fich;
 
+    @Inject
+    private GestionDocs gest;
+   
     
     public ManejadorDocumentos(){
-
-        documentos = new ArrayList<>();
+        gest = new GestionDocsImpl();
+        documento = new Documento();
+        /*documentos = new ArrayList<>();
         documentos.add(new Documento(1L, "Documento 1", "Modificandose", "contenido del documentos", ".txt"));
         documentos.add(new Documento(2L, "Documento 2", "Actualizado", "contenido del documentos2 esta lleno", ".txt"));
         documentos.add(new Documento(3L, "Documento 3", "Finalizado", "contenido del documentos, final", ".txt"));
-        documentos.add(new Documento(4L, "Documento 4", "Actualizado", "contenido del documento4 esta completo", ".txt"));
+        documentos.add(new Documento(4L, "Documento 4", "Actualizado", "contenido del documento4 esta completo", ".txt"));*/
     }
 
     /**
      * @return the documentos
      */
     public List<Documento> getDocumentos() {
-        return documentos;
+        //documentos = em.createQuery("SELECT d FROM Documento d").getResultList();
+        //return gest.devolverDoc();
+        return gest.devolverDoc();
     }
 
     /**
@@ -125,5 +133,19 @@ public class ManejadorDocumentos implements Serializable {
         {
             System.err.print(ex);
         }
+    }
+    
+    public String modificar(){
+        gest.modificarDocumento(documento);
+        return "documentacion.xhtml";
+    }
+    
+     public void eliminar(){
+        gest.eliminarDocumento(documento);
+    }
+     
+    public String anadirDoc(){
+        gest.guardarDocumento(documento);
+        return "documentacion.xhtml";
     }
 }
