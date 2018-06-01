@@ -1,10 +1,12 @@
 package BackingBeans;
 
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -36,7 +38,19 @@ public class ManejadorDocumentos implements Serializable {
     private String estado;
     private Documento documento;
     private Part fich;
+    private byte [] archivo;
+    private int longArch;
 
+    private byte [] copiadocumento;
+
+    public byte[] getCopiadocumento() {
+        return copiadocumento;
+    }
+
+    public void setCopiadocumento(byte[] copiadocumento) {
+        this.copiadocumento = copiadocumento;
+    }
+    
     @Inject
     private GestionDocs gest;
     
@@ -44,7 +58,10 @@ public class ManejadorDocumentos implements Serializable {
     private InfoSessionImpl info;
    
     
-    public ManejadorDocumentos(){}
+    public ManejadorDocumentos(){
+        gest = new GestionDocsImpl();
+        documento = new Documento();
+    }
 
     /**
      * @return the documentos
@@ -104,10 +121,35 @@ public class ManejadorDocumentos implements Serializable {
         this.fich = fich;
     }
 
-    public void subir() throws IOException {
-        try (InputStream input = fich.getInputStream()) {
-            Files.copy(input, new File("C:/Users/PC/Documents/doc.pdf").toPath());
+    public String subir() throws IOException {
+       try (InputStream input = fich.getInputStream()) {
+            String ruta = System.getProperty("user.dir");
+            System.out.println("---------------"+ruta);
+            File directorio = new File (ruta+"\\DocsScouts");
+            
+            directorio.mkdir();
+            
+            Files.copy(input, new File(ruta+"\\DocsScouts\\"+getFileName(fich)).toPath());
+            System.out.println("El objeto file");
+            longArch = (int)fich.getSize();
+            
+            if(longArch>0){
+               archivo = new byte[longArch];
+               System.out.println("longitud del archivo:"+longArch);
+               try(DataInputStream f = new DataInputStream(fich.getInputStream())){
+                   System.out.println("----------DATA INPUT"+f);
+                   f.readFully(archivo);
+               }
+               //documento.setCopiadocumento(archivo);
+                setCopiadocumento(archivo);
+            }
+            
+            return "documentacion.xhtml";
+            
+        }catch(NoSuchFileException e){
+            
         }
+        return null;
     }
     
     
@@ -122,7 +164,7 @@ public class ManejadorDocumentos implements Serializable {
         return "";
                 
     }
-    public void upload()
+    /*public void upload()
     {
         try{
         fich.write("C:/Users/PC/Documents/"+getFileName(fich));
@@ -131,7 +173,7 @@ public class ManejadorDocumentos implements Serializable {
         {
             System.err.print(ex);
         }
-    }
+    }*/
     
     public String modificar(){
         gest.modificarDocumento(documento);
@@ -147,6 +189,7 @@ public class ManejadorDocumentos implements Serializable {
         aux.setNombre(nombreDocumento);
         aux.setEstado(estado);
         aux.setTipo(tipo);
+        aux.setCopiadocumento(copiadocumento);
         Long id = info.getUser().getId();
         gest.guardarDocumento(aux,id);
         return "documentacion.xhtml";

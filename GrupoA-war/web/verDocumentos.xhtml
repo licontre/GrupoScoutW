@@ -38,7 +38,7 @@
                     <h:column>
                         <f:facet name="header">Cambiar Documento</f:facet>
                         <h:inputFile value="#{manejadorDocumentos.fich}" />
-                        <h:commandButton value="subir" action="#{manejadorDocumentos.upload()}"/> 
+                        <h:commandButton value="subir" action="#{manejadorDocumentos.subir()}"/> 
                     </h:column>
                     <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
                         <h:column>

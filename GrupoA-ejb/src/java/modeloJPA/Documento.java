@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,7 +21,8 @@ public class Documento implements Serializable {
     private Long id;
     private String nombre;
     private String estado;
-    private String copiadocumento;
+    @Lob
+    private byte [] copiadocumento;
     private String tipo;
     @ManyToOne
     private Evento eventos;
@@ -30,7 +32,7 @@ public class Documento implements Serializable {
     public Documento() {
     }
     
-    public Documento(Long id, String nombre, String estado,String copia, String tipo){
+    public Documento(Long id, String nombre, String estado,byte[] copia, String tipo){
         this.id = id;
         this.nombre = nombre;
         this.estado = estado;
@@ -59,11 +61,11 @@ public class Documento implements Serializable {
         this.estado = n;
     }
     
-    public String getCopiadocumento (){
+    public byte[] getCopiadocumento (){
         return copiadocumento;
     }
-    public void setCopiadocumento (String n){
-        this.copiadocumento = n;
+    public void setCopiadocumento (byte[] copiadocumento){
+        this.copiadocumento = copiadocumento;
     }
     
     public String getTipo (){
