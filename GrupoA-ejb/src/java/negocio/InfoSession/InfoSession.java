@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.InfoSession;
 
+import negocio.RegistroLogin.ContrasenaIncorrectaException;
+import negocio.RegistroLogin.CuentaRepetidaException;
+import negocio.RegistroLogin.CuentaInexistenteException;
 import javax.ejb.Local;
 import modeloJPA.Usuario;
 

@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import modeloJPA.Evento;
-import negocio.Eventos;
+import negocio.Eventos.Eventos;
 
 /**
  *

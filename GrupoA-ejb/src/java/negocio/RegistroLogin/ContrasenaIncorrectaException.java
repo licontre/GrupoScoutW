@@ -1,5 +1,7 @@
 
-package negocio;
+package negocio.RegistroLogin;
+
+import negocio.InfoSession.InfoSessionException;
 
 /**
  *

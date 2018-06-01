@@ -18,8 +18,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import modeloJPA.Usuario;
-import negocio.CuentaRepetidaException;
-import negocio.EditarUsuario;
+import negocio.RegistroLogin.CuentaRepetidaException;
+import negocio.Usuarios.EditarUsuario;
 
 /**
  *

@@ -24,8 +24,8 @@ public class Documento implements Serializable {
     private String tipo;
     @ManyToOne
     private Evento eventos;
-    @ManyToMany(mappedBy="documentos")
-    private List<Usuario> usuarios;
+    @ManyToOne
+    private Usuario usuario;
 
     public Documento() {
     }
@@ -80,11 +80,11 @@ public class Documento implements Serializable {
         this.id = id;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
+    public Usuario getUsuario() {
+        return usuario;
     }
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuario(Usuario usuarios) {
+        this.usuario = usuarios;
     }
    
     public static long getSerialVersionUID() {

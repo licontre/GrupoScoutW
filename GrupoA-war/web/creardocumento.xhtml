@@ -23,7 +23,7 @@
                     <div class="form-group">
                     <label class="control-label col-sm-2" for="nombre">Nombre del documento:</label>
                         <div class="col-md-4">
-                            <h:inputText class="form-control" id="nombre" value="#{manejadorDocumentos.documento.nombre}" ></h:inputText>
+                            <h:inputText class="form-control" id="nombre" value="#{manejadorDocumentos.nombreDocumento}" ></h:inputText>
                         </div>
                     </div>
                     
@@ -31,7 +31,7 @@
 			<label class="control-label col-sm-2" for="fecha">Estado:</label>
 			<div class="col-sm-10">
                             <div class="input-group col-md-4">
-                                <h:selectOneMenu value = "#{manejadorDocumentos.documento.estado}" class="form-control"> 
+                                <h:selectOneMenu value = "#{manejadorDocumentos.estado}" class="form-control"> 
                                     <f:selectItem itemValue = "Enviado" itemLabel = "Enviado" />  
                                     <f:selectItem itemValue = "Modificándose" itemLabel = "Modificándose" /> 
                                     <f:selectItem itemValue = "Actualizado" itemLabel = "Actualizado" />
@@ -45,7 +45,7 @@
                     <label class="control-label col-sm-2" for="fecha">Tipo:</label>
                         <div class="col-sm-10">
                             <div class="input-group col-md-4">
-                                <h:selectOneMenu value = "#{manejadorDocumentos.documento.tipo}" class="form-control"> 
+                                <h:selectOneMenu value = "#{manejadorDocumentos.tipo}" class="form-control"> 
                                     <f:selectItem itemValue = "Autorización" itemLabel = "Autorización" /> 
                                     <f:selectItem itemValue = "Documento médico" itemLabel = "Documento médico" />
                                     <f:selectItem itemValue = "Documento bancario" itemLabel = "Documento bancario" />  

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.RegistroLogin;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,10 +41,11 @@ public class NegocioImpl implements Negocio {
         Query cons = em.createNamedQuery("VerCorreo",Usuario.class);
         cons.setParameter("email",u.getEmail());
         List<Usuario> lis = cons.getResultList();
+        if(lis!=null){
             for(Usuario user:lis){
                 System.out.println("-------------------->"+user.getNombreusuario());
                 throw new CuentaRepetidaException("Correo ya registrado.");
-            }
+            }}
         Query sec = em.createNamedQuery("VerSecciones",Seccion.class);
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("---------------------------"+edad(df.format(u.getFechanacimiento()))+"------------------------");

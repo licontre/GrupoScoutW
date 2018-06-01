@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.Documentos;
 
 import java.util.List;
 import javax.ejb.Local;
@@ -15,7 +15,7 @@ import modeloJPA.Documento;
  */
 @Local
 public interface GestionDocs {
-    public void guardarDocumento(Documento doc);
+    public void guardarDocumento(Documento doc,Long idUser);
     public void modificarDocumento(Documento doc);
     public void eliminarDocumento(Documento doc);
     public List<Documento> devolverDoc();

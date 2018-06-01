@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.Usuarios;
 
+import negocio.RegistroLogin.CuentaRepetidaException;
 import java.util.List;
 import javax.ejb.Local;
 import modeloJPA.Usuario;

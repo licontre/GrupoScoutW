@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.Documentos;
 
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.inject.Inject;
 import javax.mail.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -28,14 +29,15 @@ public class GestionDocsImpl implements GestionDocs {
 
     @PersistenceContext(unitName = "GrupoA-ejbPU")
     private EntityManager em;
+    
+    
 
     @Override
-    public void guardarDocumento(Documento doc) {
-       // EntityTransaction tx = em.getTransaction();
-        //tx.begin();
+    public void guardarDocumento(Documento doc,Long idUser) {
+        Usuario u = em.find(Usuario.class, idUser);
+        doc.setUsuario(u);
         em.persist(doc);
-        //tx.commit();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

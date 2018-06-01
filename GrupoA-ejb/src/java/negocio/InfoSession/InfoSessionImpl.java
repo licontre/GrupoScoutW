@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.InfoSession;
 
+import negocio.RegistroLogin.ContrasenaIncorrectaException;
+import negocio.RegistroLogin.CuentaRepetidaException;
+import negocio.RegistroLogin.CuentaInexistenteException;
 import java.util.List;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.mail.Session;
 import javax.persistence.EntityManager;
@@ -19,6 +23,7 @@ import modeloJPA.Usuario;
  * @author licontrex
  */
 @Stateless
+@LocalBean
 public class InfoSessionImpl implements InfoSession{
     //@Resource(name = "mail/agenda")
     private Session session;
