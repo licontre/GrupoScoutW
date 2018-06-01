@@ -16,8 +16,9 @@ import javax.inject.Inject;
 
 import javax.servlet.http.Part;
 import modeloJPA.Documento;
-import negocio.GestionDocs;
-import negocio.GestionDocsImpl;
+import negocio.Documentos.GestionDocs;
+import negocio.Documentos.GestionDocsImpl;
+import negocio.InfoSession.InfoSessionImpl;
 
 
 
@@ -31,22 +32,19 @@ public class ManejadorDocumentos implements Serializable {
 
     private List<Documento> documentos;
     private String nombreDocumento;
+    private String tipo;
+    private String estado;
     private Documento documento;
     private Part fich;
 
     @Inject
     private GestionDocs gest;
+    
+    @Inject
+    private InfoSessionImpl info;
    
     
-    public ManejadorDocumentos(){
-        gest = new GestionDocsImpl();
-        documento = new Documento();
-        /*documentos = new ArrayList<>();
-        documentos.add(new Documento(1L, "Documento 1", "Modificandose", "contenido del documentos", ".txt"));
-        documentos.add(new Documento(2L, "Documento 2", "Actualizado", "contenido del documentos2 esta lleno", ".txt"));
-        documentos.add(new Documento(3L, "Documento 3", "Finalizado", "contenido del documentos, final", ".txt"));
-        documentos.add(new Documento(4L, "Documento 4", "Actualizado", "contenido del documento4 esta completo", ".txt"));*/
-    }
+    public ManejadorDocumentos(){}
 
     /**
      * @return the documentos
@@ -145,7 +143,40 @@ public class ManejadorDocumentos implements Serializable {
     }
      
     public String anadirDoc(){
-        gest.guardarDocumento(documento);
+        Documento aux = new Documento();
+        aux.setNombre(nombreDocumento);
+        aux.setEstado(estado);
+        aux.setTipo(tipo);
+        Long id = info.getUser().getId();
+        gest.guardarDocumento(aux,id);
         return "documentacion.xhtml";
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

@@ -6,6 +6,10 @@
 package BackingBeans;
 
 
+import negocio.RegistroLogin.CuentaRepetidaException;
+import negocio.RegistroLogin.RegistroException;
+import negocio.RegistroLogin.ValidacionIncorrectaException;
+import negocio.RegistroLogin.Negocio;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +25,6 @@ import javax.faces.context.FacesContext;
 import modeloJPA.Usuario;
 
 import modeloJPA.Usuario.Sexo;
-import negocio.*;
 
 /**
  *

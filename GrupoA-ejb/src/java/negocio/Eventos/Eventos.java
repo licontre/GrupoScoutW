@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package negocio.Eventos;
 
 import java.util.List;
 //import static javafx.scene.input.KeyCode.T;

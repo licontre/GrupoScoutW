@@ -62,7 +62,7 @@ public class Usuario implements Serializable {
     private List<Asistencia> asistencias;
     @ManyToOne
     private Seccion lista;   
-    @ManyToMany
+    @OneToMany (mappedBy="usuario")
     private List<Documento> documentos;
     
     

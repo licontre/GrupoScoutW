@@ -21,11 +21,11 @@ import javax.inject.Inject;
 import javax.inject.*;
 import modeloJPA.Usuario;
 import modeloJPA.Seccion.Cargo;
-import negocio.ContrasenaIncorrectaException;
-import negocio.CuentaInexistenteException;
-import negocio.CuentaRepetidaException;
-import negocio.InfoSession;
-import negocio.Negocio;
+import negocio.RegistroLogin.ContrasenaIncorrectaException;
+import negocio.RegistroLogin.CuentaInexistenteException;
+import negocio.RegistroLogin.CuentaRepetidaException;
+import negocio.InfoSession.InfoSession;
+import negocio.RegistroLogin.Negocio;
 
 /**
  *
