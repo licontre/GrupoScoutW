@@ -17,18 +17,19 @@
     <ui:define name="content">
        <!-- <c:set var="event" value="{manejadorEventos.evento}" />  -->   
         <div align="center">
+            <c:set var="event" value="#{manejadorEventos.evento}"/>
             <h:form class="form-horizontal">
                 <div class="form-group">
                     <h:outputLabel class="control-label col-sm-2" for="nombreEvento">Nombre del evento:</h:outputLabel>
                     <div class="col-md-4">
-                        <h:inputText class="form-control" value="#{manejadorEventos.nombreEvento}">
+                        <h:inputText class="form-control" value="#{event.nombre}">
                             <f:validateRequired/>
                         </h:inputText>
                         <h:message for="nombreEvento" style="color:black"/>
                     </div>
                     <label class="control-label col-sm-2" for="Descripcion">Descripcion:</label>
                     <div class="col-md-4">
-                        <h:inputText class="form-control" id="Descripcion" value="#{manejadorEventos.dsc}" >
+                        <h:inputText class="form-control" id="Descripcion" value="#{event.descripcion}" >
                             <f:validateRequired/>
                         </h:inputText>
                         <h:message for="Objetivos" style="color:black"/>
@@ -36,33 +37,34 @@
 
                     <label class="control-label col-sm-2" for="Ubicacion">Ubicacion:</label>
                     <div class="col-md-4">
-                        <h:inputText class="form-control" id="Ubicacion" value="#{manejadorEventos.loc}">
+                        <h:inputText class="form-control" id="Ubicacion" value="#{event.localizacion}">
                             <f:validateRequired/>
                         </h:inputText>
                         <h:message for="Ubicacion" style="color:black"/>
                     </div>                
                     <label class="control-label col-sm-2" for="precio">Precio:</label>
                     <div class="col-md-4">
-                        <h:inputText class="form-control" id="precio" value="#{manejadorEventos.precio}">
+                        <h:inputText class="form-control" id="precio" value="#{event.precio}">
                             <f:validateRequired/>
                         </h:inputText>
                         <h:message for="precio" style="color:black"/>
                     </div>
                     <label class="control-label col-sm-2" for="precio">Presupuesto</label>
                     <div class="col-md-4">
-                        <h:inputText class="form-control" id="presupuesto" value="#{manejadorEventos.pres}">
+                        <h:inputText class="form-control" id="presupuesto" value="#{event.presupuesto}">
                             <f:validateRequired/>
                         </h:inputText>
                         <h:message for="presupuesto" style="color:black"/>
                     </div>
                     <label class="control-label col-sm-2" for="fecha">Fecha (Día/Mes/Año)</label>
                     <div class="col-md-4">       
-                        <h:inputText class="form-control" value="#{manejadorEventos.fecha}">
+                        <h:inputText class="form-control" value="#{event.fecha}">
                             <f:convertDateTime pattern="dd/mm/yyyy"/>
                         </h:inputText>
                     </div>
-                    <div class="col-md-4">       
-                        <h:selectOneMenu class="form-control" value="#{manejadorEventos.idSeccion}">
+                    <div class="col-md-4">
+                        <label class="control-label col-sm-2">Sección:</label>
+                        <h:selectOneMenu class="form-control" value="#{event.seccion.id}">
                             <f:selectItem itemValue = "1" itemLabel = "Castores" /> 
                             <f:selectItem itemValue = "2" itemLabel = "Manada" /> 
                             <f:selectItem itemValue = "3" itemLabel = "Scouteer" /> 

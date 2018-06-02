@@ -46,8 +46,8 @@ public class Eventos {
 
     }
     
-    public void moficar(Evento ev){
-        em.persist(ev);
+    public void modificar(Evento ev){
+        em.merge(ev);
     }
 
     public List<Evento> todosEventos() {
