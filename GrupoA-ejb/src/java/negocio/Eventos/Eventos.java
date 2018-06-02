@@ -54,5 +54,11 @@ public class Eventos {
         Query q = em.createNamedQuery("findAll");
         return q.getResultList();
     }
+    
+    public List<Evento> SeccionEventos(Long idUsuario) {
+        Query q = em.createNamedQuery("eventoSeccion");
+        q.setParameter("idUser", idUsuario);
+        return q.getResultList();
+    }
 
 }
