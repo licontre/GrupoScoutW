@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import modeloJPA.Evento;
 import negocio.Eventos.Eventos;
+import negocio.InfoSession.InfoSession;
 
 /**
  *
@@ -35,6 +36,9 @@ public class ManejadorEventos implements Serializable {
 
     @Inject
     private Eventos eventEJB;
+
+    @Inject
+    private InfoSession info;
 
     public ManejadorEventos() {
 
@@ -62,7 +66,11 @@ public class ManejadorEventos implements Serializable {
     }
 
     public List<Evento> getEventos() {
-        return eventEJB.todosEventos();
+        if (info.getUser().getLista().getId() == 6 || info.getUser().getLista().getId() == 7) {
+            return eventEJB.todosEventos();
+        } else {
+            return eventEJB.SeccionEventos(info.getUser().getId());
+        }
     }
 
     public void setNombreEvento(String nombreEvento) {
