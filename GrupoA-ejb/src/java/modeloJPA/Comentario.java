@@ -7,11 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
+@NamedQueries({@NamedQuery(name="VerComentarios", query="select c from Comentario c")})
 public class Comentario implements Serializable {
 
     private static long serialVersionUID = 1L;
@@ -30,9 +33,11 @@ public class Comentario implements Serializable {
     }
     
     
-    public Comentario(Date fecha, String comentario){
+    public Comentario(Date fecha, String comentario,Usuario us,Evento ev){
         this.fecha=fecha;
         this.comentario=comentario;
+        this.usuario = us;
+        this.comentarios = ev;
     }
     
     public Date getFecha() {

@@ -34,17 +34,23 @@
                     </h:form>
                     <h3>Comentarios</h3>                                                       
                     <div class="comments">
-                        <ui:repeat var="comment" value="#{manejadorComentarios.comentarios}">
+                        <ui:repeat var="comment" value="#{manejadorComentarios.getComentarios(event)}">
                             <div class="comment-wrap">
                                 <div class="photo">
                                     <div class="avatar" style="background-image:url('./imagenes/avatar.jpg') "></div>
                                 </div>
                                 <div class="comment-block">
-                                    <p id="user">Nombre Usuario</p>
+                                    <p id="user"><h:outputText value="#{comment.usuario.nombreusuario}"></h:outputText></p>
                                     <p class="comment-text">#{comment.comentario}</p>
                                     <div class="bottom-comment">
                                         <div class="comment-date">#{comment.fecha}</div>
                                     </div>
+                                    <c:if test="#{login.user.lista.getId()== 7}">
+                                            <h:form>
+                                                <h:commandButton value="borrar" action="#{manejadorComentarios.borralo(comment)}"></h:commandButton>
+                                            </h:form>
+                                    </c:if>
+                                    
                                 </div>
                             </div>
                         </ui:repeat>                     
@@ -55,7 +61,7 @@
                             <div class="comment-block">
                                 <h:form>
                                     <h:inputTextarea id="c" cols="30" rows="3" a:placeholder="Comentar..." value="#{manejadorComentarios.comment}"/>
-                                    <h:commandButton value="Comentar" action="#{manejadorComentarios.addComentarios()}"/>
+                                    <h:commandButton value="Comentar" action="#{manejadorComentarios.addComentarios(event)}"/>
                                 </h:form>
                             </div>
                         </div>
@@ -81,7 +87,6 @@
 
 
         </div>
-
         <!-- </div>  -->
     </ui:define>
 </ui:composition>
