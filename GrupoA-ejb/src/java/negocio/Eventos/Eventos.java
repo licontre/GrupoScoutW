@@ -46,12 +46,18 @@ public class Eventos {
 
     }
     
-    public void moficar(Evento ev){
-        em.persist(ev);
+    public void modificar(Evento ev){
+        em.merge(ev);
     }
 
     public List<Evento> todosEventos() {
         Query q = em.createNamedQuery("findAll");
+        return q.getResultList();
+    }
+    
+    public List<Evento> SeccionEventos(Long idUsuario) {
+        Query q = em.createNamedQuery("eventoSeccion");
+        q.setParameter("idUser", idUsuario);
         return q.getResultList();
     }
 

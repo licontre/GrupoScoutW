@@ -13,7 +13,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import modeloJPA.Evento;
-import modeloJPA.Seccion;
 import negocio.Eventos.Eventos;
 import negocio.InfoSession.InfoSession;
 
@@ -37,8 +36,9 @@ public class ManejadorEventos implements Serializable {
 
     @Inject
     private Eventos eventEJB;
+
     @Inject
-    private InfoSession session;
+    private InfoSession info;
 
     public ManejadorEventos() {
 
@@ -48,7 +48,7 @@ public class ManejadorEventos implements Serializable {
         eventEJB.eliminar(event);
     }
 
-    public void crearEvento() {
+    public String crearEvento() {
         Evento aux = new Evento();
         aux.setNombre(nombreEvento);
         aux.setFecha(fecha);
@@ -57,27 +57,20 @@ public class ManejadorEventos implements Serializable {
         aux.setPrecio(precio);
         aux.setPresupuesto(pres);
         eventEJB.annadir(aux, idSeccion);
+        return "inicio.xhtml";
     }
 
-    public void modificarEvento(Evento event) {
-        eventEJB.moficar(event);
+    public String modificarEvento(Evento event) {
+        eventEJB.modificar(event);
+        return "verMisEventos.xhtml";
     }
-    
-    public List<Evento> getEventosBySeccion(){
-        this.setEventos(this.getEventos());
-        if(session.getUser().getLista().getId()==7){
-            return this.getEventos();
-        }
-        List<Evento> events = new ArrayList();
-        for(Evento ev: getEventos()){
-            if(session.getUser().getLista().equals(ev.getSeccion())){
-                events.add(ev);
-            }
-        }
-        return events;
-    }
+
     public List<Evento> getEventos() {
-        return eventEJB.todosEventos();
+        if (info.getUser().getLista().getId() == 6 || info.getUser().getLista().getId() == 7) {
+            return eventEJB.todosEventos();
+        } else {
+            return eventEJB.SeccionEventos(info.getUser().getId());
+        }
     }
 
     public void setNombreEvento(String nombreEvento) {
@@ -184,26 +177,5 @@ public class ManejadorEventos implements Serializable {
      */
     public void setIdSeccion(int idSeccion) {
         this.idSeccion = idSeccion;
-    }
-
-    /**
-     * @return the session
-     */
-    public InfoSession getSession() {
-        return session;
-    }
-
-    /**
-     * @param session the session to set
-     */
-    public void setSession(InfoSession session) {
-        this.session = session;
-    }
-
-    /**
-     * @param eventos the eventos to set
-     */
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
     }
 }

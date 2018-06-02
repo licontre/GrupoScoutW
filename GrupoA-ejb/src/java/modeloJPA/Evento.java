@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "findAll", query = "select e from Evento e")
+    @NamedQuery(name = "findAll", query = "select e from Evento e"),
+    @NamedQuery(name= "eventoSeccion", query=" select e from Evento e, Usuario u where u.lista.id = e.seccion.id and u.id = :idUser")
 })
 public class Evento implements Serializable {
 

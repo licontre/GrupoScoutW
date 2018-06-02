@@ -15,22 +15,6 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Asistencia implements Serializable {
-
-    /**
-     * @return the confirmacion
-     */
-    public Opcion getConfirmacion() {
-        return confirmacion;
-    }
-
-    /**
-     * @param confirmacion the confirmacion to set
-     */
-    public void setConfirmacion(Opcion confirmacion) {
-        this.confirmacion = confirmacion;
-    }
-
-    public enum Opcion { SI, NO }
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,8 +22,6 @@ public class Asistencia implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     private String observacion;
-    @Enumerated(EnumType.STRING)
-    private Opcion confirmacion;
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
