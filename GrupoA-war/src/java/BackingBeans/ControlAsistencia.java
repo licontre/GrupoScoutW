@@ -10,7 +10,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+import modeloJPA.Asistencia;
+import modeloJPA.Evento;
+import negocio.Asistencia.AsistenciaImpl;
+import negocio.InfoSession.InfoSession;
 
 
 
@@ -19,19 +24,15 @@ import javax.inject.Named;
 public class ControlAsistencia implements Serializable{
     
     private List<Usuario> usuarios;
+    private String observacion;
     
-    public ControlAsistencia(){
-        usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("castor", "castor","Juanito","Velasco"));
-        usuarios.add(new Usuario("castor", "castor","Alba","Perez"));
-        usuarios.add(new Usuario("castor", "castor","Pablo","Paredes"));
-        usuarios.add(new Usuario("castor", "castor", "Luis","Garcia"));
-        usuarios.add(new Usuario("castor", "castor", "Maria","Torres"));
-        usuarios.add(new Usuario("castor", "castor", "Julia","Dominguez"));
-        usuarios.add(new Usuario("monitor", "monitor","Caroline","Ho"));
-        usuarios.add(new Usuario("admin", "admin","Luis","Castillo"));
-        usuarios.add(new Usuario("secretaria", "secretaria", "Pepe","Wilfred"));
-    }
+    @Inject
+    private InfoSession info;
+    
+    @Inject
+    private AsistenciaImpl asisEJB;
+    
+    public ControlAsistencia(){}
 
     /**
      * @return the usuarios
@@ -47,7 +48,35 @@ public class ControlAsistencia implements Serializable{
         this.usuarios = usuarios;
     }
     
-    public void apuntarse(Usuario user){
-        usuarios.add(user);
+    public String apuntarse(Evento event){
+        Asistencia asist = new Asistencia();
+        asist.setEvento(event);
+        asist.setUsuario(info.getUser());
+        asist.setObservacion(observacion);        
+        asisEJB.annadir(asist);
+        return "verEvento.xhtml";
+        
+    }
+    
+    public void borrarse(Evento event){
+        asisEJB.borrar(event,info.getUser());
+    }
+    
+    public boolean isApuntado(Evento event){ 
+        return asisEJB.ispuntado(event, info.getUser());
+    }
+
+    /**
+     * @return the observacion
+     */
+    public String getObservacion() {
+        return observacion;
+    }
+
+    /**
+     * @param observacion the observacion to set
+     */
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

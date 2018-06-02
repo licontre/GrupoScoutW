@@ -9,11 +9,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "apuntado", query = " select a from Asistencia a where a.evento.id = :idEvento and a.usuario.id = :idUser")    
+})
+
 public class Asistencia implements Serializable {
     private static long serialVersionUID = 1L;
     @Id
@@ -25,7 +31,7 @@ public class Asistencia implements Serializable {
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
-    private Evento asistencia;
+    private Evento evento;
         
     public Usuario getUsuario(){
         return usuario;
@@ -55,11 +61,11 @@ public class Asistencia implements Serializable {
         this.id = id;
     }
 
-    public Evento getAsistencia() {
-        return asistencia;
+    public Evento getEvento() {
+        return evento;
     }
-    public void setAsistencia(Evento asistencia) {
-        this.asistencia = asistencia;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
     
     public static long getSerialVersionUID() {

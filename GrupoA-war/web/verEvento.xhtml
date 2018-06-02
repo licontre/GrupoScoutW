@@ -22,8 +22,15 @@
                 <div class="col-9">
                     <h2>#{event.nombre}</h2>
                     <p>#{event.descripcion}</p>
-                    <h:form>
-                        <h:commandButton class="btn btn-primary active" value="Apuntarse" action="#{controlAsistencia.apuntarse(controlAutorizacion.usuario)}"/>
+                    <h:form>                       
+                        <c:choose>
+                            <c:when test="#{!controlAsistencia.isApuntado(event)}">
+                                <h:button class="btn btn-primary active" value="Apuntarse" outcome="verApuntarse.xhtml"/>
+                            </c:when>
+                            <c:otherwise>
+                                <h:commandButton class="btn btn-primary active" value="Borrarse" action="#{controlAsistencia.borrarse(event)}" />
+                            </c:otherwise>
+                        </c:choose>
                     </h:form>
                     <h3>Comentarios</h3>                                                       
                     <div class="comments">

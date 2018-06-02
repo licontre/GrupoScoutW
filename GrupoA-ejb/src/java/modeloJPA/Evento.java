@@ -21,7 +21,8 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "findAll", query = "select e from Evento e"),
-    @NamedQuery(name= "eventoSeccion", query=" select e from Evento e, Usuario u where u.lista.id = e.seccion.id and u.id = :idUser")
+    @NamedQuery(name= "eventoSeccion", query=" select e from Evento e, Usuario u where u.lista.id = e.seccion.id and u.id = :idUser"),
+    @NamedQuery(name = "misEventos", query = "select e from Evento e, Asistencia a where a.usuario.id = :idUser")
 })
 public class Evento implements Serializable {
 
@@ -41,7 +42,7 @@ public class Evento implements Serializable {
     private Seccion seccion;
     @OneToMany(mappedBy = "comentarios")
     private List<Comentario> comentarios;
-    @OneToMany(mappedBy = "asistencia")
+    @OneToMany(mappedBy = "evento")
     private List<Asistencia> asistencia;
     @OneToMany(mappedBy = "eventos")
     private List<Documento> documentos;

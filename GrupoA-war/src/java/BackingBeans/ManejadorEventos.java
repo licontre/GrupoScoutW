@@ -25,6 +25,7 @@ import negocio.InfoSession.InfoSession;
 public class ManejadorEventos implements Serializable {
 
     private List<Evento> eventos;
+    private List<Evento> misEventos;
     private String nombreEvento;
     private Evento evento;
     private Date fecha;
@@ -58,6 +59,14 @@ public class ManejadorEventos implements Serializable {
         aux.setPresupuesto(pres);
         eventEJB.annadir(aux, idSeccion);
         return "inicio.xhtml";
+    }
+
+    public List<Evento> getMisEventos() {
+        if (info.getUser().getLista().getId() == 6 || info.getUser().getLista().getId() == 7) {
+            return eventEJB.todosEventos();
+        } else {
+            return eventEJB.MisEventos(info.getUser().getId());
+        }
     }
 
     public String modificarEvento(Evento event) {
@@ -177,5 +186,12 @@ public class ManejadorEventos implements Serializable {
      */
     public void setIdSeccion(int idSeccion) {
         this.idSeccion = idSeccion;
+    }
+
+    /**
+     * @param misEventos the misEventos to set
+     */
+    public void setMisEventos(List<Evento> misEventos) {
+        this.misEventos = misEventos;
     }
 }
