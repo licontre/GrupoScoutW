@@ -44,7 +44,7 @@ public class ManejadorEventos implements Serializable {
         eventEJB.eliminar(event);
     }
 
-    public void crearEvento() {
+    public String crearEvento() {
         Evento aux = new Evento();
         aux.setNombre(nombreEvento);
         aux.setFecha(fecha);
@@ -53,10 +53,12 @@ public class ManejadorEventos implements Serializable {
         aux.setPrecio(precio);
         aux.setPresupuesto(pres);
         eventEJB.annadir(aux, idSeccion);
+        return "inicio.xhtml";
     }
 
-    public void modificarEvento(Evento event) {
-        eventEJB.moficar(event);
+    public String modificarEvento(Evento event) {
+        eventEJB.modificar(event);
+        return "verMisEventos.xhtml";
     }
 
     public List<Evento> getEventos() {
