@@ -60,5 +60,11 @@ public class Eventos {
         q.setParameter("idUser", idUsuario);
         return q.getResultList();
     }
+    
+    public List<Evento> MisEventos(Long idUsuario) {
+        Query q = em.createNamedQuery("misEventos");
+        q.setParameter("idUser", idUsuario);
+        return q.getResultList();
+    }
 
 }
