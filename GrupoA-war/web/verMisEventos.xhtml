@@ -16,7 +16,7 @@
         <div class="container">
             <p>En esta pagina podrás ver los eventos a los que te has apuntado</p>
             <h:form>
-                <h:dataTable var="event" value="#{manejadorEventos.eventos}">
+                <h:dataTable var="event" value="#{manejadorEventos.getEventosBySeccion()}">
                     <h:column>
                         <f:facet name="header">Nombre</f:facet>                 
                         <h:commandButton class="btn btn-default btn-block" value="#{event.nombre}" action="verEvento.xhtml">

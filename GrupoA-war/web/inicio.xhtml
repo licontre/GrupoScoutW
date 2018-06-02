@@ -21,16 +21,7 @@
                 <div class="col-9"> 
                     <ui:repeat var="event" value="#{manejadorEventos.eventos}"> 
                         <h:form>
-                            <h2>#{event.nombre}</h2>
-                            <div class="datos">
-                                <table>
-                                    <tr>
-                                        <td>Admin</td>
-                                        <td>01/01/2018</td>
-                                        <td>Grupo</td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <h2>#{event.nombre}</h2>                           
                             <p>#{fn:substring(event.descripcion,0,150)}...</p>
                             <h:commandButton value="Seguir leyendo" action="verEvento.xhtml">
                                 <f:actionListener binding="#{manejadorEventos.setEvento(event)}"/>
