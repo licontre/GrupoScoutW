@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import modeloJPA.Evento;
 import modeloJPA.Seccion;
 
+
 /**
  *
  * @author PC
@@ -50,10 +51,15 @@ public class Eventos {
         em.merge(ev);
     }
 
-    public List<Evento> todosEventos() {
+    public List<Evento> todosEventos() throws EventoException {
         Query q = em.createNamedQuery("findAll");
-        return q.getResultList();
+        List<Evento> lis = q.getResultList();
+        if(lis == null){
+            throw new EventoException();
+        }
+    return lis;
     }
+
     
     public List<Evento> SeccionEventos(Long idUsuario) {
         Query q = em.createNamedQuery("eventoSeccion");
