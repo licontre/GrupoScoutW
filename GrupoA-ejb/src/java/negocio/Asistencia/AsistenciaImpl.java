@@ -5,6 +5,7 @@
  */
 package negocio.Asistencia;
 
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -62,5 +63,28 @@ public class AsistenciaImpl {
             esta=false;
         }
         return esta;
+    }
+    
+    public List<Usuario> usuariosApuntados(Evento event){
+        Query q = em.createNamedQuery("listaApuntados");
+        q.setParameter("idEvento", event.getId());
+        return q.getResultList();
+    }
+    
+    public String dameObservacion(Long idUser,Long idEvent){
+        
+        String obs="";
+        try{
+        Query q = em.createNamedQuery("observacion");
+        q.setParameter("idEvent", idEvent);
+        q.setParameter("idUser", idUser);
+        obs = (String) q.getSingleResult();
+
+        }catch (NoResultException e1){
+            obs="-";
+        }catch(NonUniqueResultException e2){
+            
+        }
+        return obs;
     }
 }

@@ -5,6 +5,11 @@
  */
 package BackingBeans;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import modeloJPA.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,22 +22,28 @@ import modeloJPA.Evento;
 import negocio.Asistencia.AsistenciaImpl;
 import negocio.InfoSession.InfoSession;
 
-
-
 @Named(value = "controlAsistencia")
 @SessionScoped
-public class ControlAsistencia implements Serializable{
-    
+public class ControlAsistencia implements Serializable {
+
     private List<Usuario> usuarios;
     private String observacion;
-    
+    private String path;
+
     @Inject
     private InfoSession info;
-    
+
     @Inject
     private AsistenciaImpl asisEJB;
     
-    public ControlAsistencia(){}
+    
+
+    public ControlAsistencia() {
+    }
+
+    public List<Usuario> dameUsuarios(Evento event) {
+        return asisEJB.usuariosApuntados(event);
+    }
 
     /**
      * @return the usuarios
@@ -47,22 +58,47 @@ public class ControlAsistencia implements Serializable{
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-    
-    public String apuntarse(Evento event){
+
+    public String apuntarse(Evento event) {
         Asistencia asist = new Asistencia();
         asist.setEvento(event);
         asist.setUsuario(info.getUser());
-        asist.setObservacion(observacion);        
+        asist.setObservacion(observacion);
         asisEJB.annadir(asist);
         return "verEvento.xhtml";
-        
+
     }
-    
-    public void borrarse(Evento event){
-        asisEJB.borrar(event,info.getUser());
+
+    public String dameObservacion(Usuario u, Evento event) {
+        return asisEJB.dameObservacion(u.getId(), event.getId());
     }
-    
-    public boolean isApuntado(Evento event){ 
+
+    public String listaCSV(Evento event) throws IOException {
+        List <Usuario> aux = asisEJB.usuariosApuntados(event);
+        path=System.getProperty("user.dir")+"\\"+event.getNombre().replaceAll(" ", "_")+"_lista.csv";
+        try {
+            
+            File fich = new File(path);
+            System.out.println(fich.getAbsolutePath());
+            FileWriter fw = new FileWriter(fich, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            try (PrintWriter pw = new PrintWriter(bw)) {
+                pw.println("Nombre;Apellidos;Observacion");
+                aux.forEach((u) -> {
+                    pw.println(u.getNombre() + ";" + u.getApellidos() + ";" + asisEJB.dameObservacion(u.getId(), event.getId()));
+                });
+                pw.flush();
+            }
+            
+        } catch (Exception e) {}
+        return null;
+    }
+
+    public void borrarse(Evento event) {
+        asisEJB.borrar(event, info.getUser());
+    }
+
+    public boolean isApuntado(Evento event) {
         return asisEJB.ispuntado(event, info.getUser());
     }
 
@@ -78,5 +114,19 @@ public class ControlAsistencia implements Serializable{
      */
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    /**
+     * @return the path
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * @param path the path to set
+     */
+    public void setPath(String path) {
+        this.path = path;
     }
 }
