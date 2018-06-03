@@ -25,6 +25,7 @@ import negocio.RegistroLogin.ContrasenaIncorrectaException;
 import negocio.RegistroLogin.CuentaInexistenteException;
 import negocio.RegistroLogin.CuentaRepetidaException;
 import negocio.InfoSession.InfoSession;
+import negocio.InfoSession.InfoSessionException;
 import negocio.RegistroLogin.Negocio;
 
 /**
@@ -72,13 +73,17 @@ public class Login implements Controlador, Serializable {
         this.password = password;
     }
 
-    public String autenticar() throws ContrasenaIncorrectaException, CuentaInexistenteException {
+    public String autenticar() throws ContrasenaIncorrectaException, CuentaInexistenteException, InfoSessionException {
         System.out.println("Pasara");
         String res =info.validarUsuario(correo, password);
+        if(res==null){
+            res="login.xhtml";
+        }else{
         this.setUser(info.getUser());
         System.out.println(getUser().getEmail());
         System.out.println(getUser().getNombre());
         System.out.println(getUser().getContrasenia());
+        }
         return res;
     }
     
@@ -100,6 +105,8 @@ public class Login implements Controlador, Serializable {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CuentaInexistenteException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InfoSessionException ise){
+            
         }
     }
 

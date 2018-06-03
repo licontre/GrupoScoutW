@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import modeloJPA.Evento;
+import negocio.Eventos.EventoException;
 import negocio.Eventos.Eventos;
 import negocio.InfoSession.InfoSession;
 
@@ -61,7 +62,7 @@ public class ManejadorEventos implements Serializable {
         return "inicio.xhtml";
     }
 
-    public List<Evento> getMisEventos() {
+    public List<Evento> getMisEventos() throws EventoException {
         if (info.getUser().getLista().getId() == 6 || info.getUser().getLista().getId() == 7) {
             return eventEJB.todosEventos();
         } else {
@@ -74,7 +75,7 @@ public class ManejadorEventos implements Serializable {
         return "verMisEventos.xhtml";
     }
 
-    public List<Evento> getEventos() {
+    public List<Evento> getEventos() throws EventoException {
         if (info.getUser().getLista().getId() == 6 || info.getUser().getLista().getId() == 7) {
             return eventEJB.todosEventos();
         } else {

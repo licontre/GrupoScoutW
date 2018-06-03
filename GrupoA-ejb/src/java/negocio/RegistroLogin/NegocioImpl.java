@@ -56,8 +56,12 @@ public class NegocioImpl implements Negocio {
                 System.out.println(seccion.get(i).getEdadmaxima());
                 i++;
             }
+            u.setLista(seccion.get(i));
+        }else{
+            seccion = new ArrayList<>();
+            u.setLista(new Seccion());
         }
-        u.setLista(seccion.get(i));
+        
         em.persist(u);
         System.out.println("Registrado "+u.getNombreusuario()+" -> "+seccion.get(0).getNombre());
     }
