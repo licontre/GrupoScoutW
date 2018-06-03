@@ -5,7 +5,8 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:t="http://myfaces.apache.org/tomahawk">
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                >
 
 
     <ui:define name="head"> 
@@ -29,16 +30,12 @@
                         <f:facet name="header">Estado</f:facet>
                             #{doc.estado}
                     </h:column>
+                  
                     <h:column>
-                        <f:facet name="header">Copia</f:facet>
-                        <a href="./documentos/documento_descargar.pdf" download="true">
-                            <img border="0" src="./imagenes/download.png" alt="Descargar"/>
-                        </a>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Cambiar Documento</f:facet>
-                        <h:inputFile value="#{manejadorDocumentos.fich}" />
-                        <h:commandButton value="subir" action="#{manejadorDocumentos.subir()}"/> 
+                        <f:facet name="header">Cambiar Documento: </f:facet>
+                        <h:inputFile  value="#{manejadorDocumentos.fich}">
+                               <f:ajax listener="#{manejadorDocumentos.subir()}"/>
+                        </h:inputFile>
                     </h:column>
                     <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
                         <h:column>

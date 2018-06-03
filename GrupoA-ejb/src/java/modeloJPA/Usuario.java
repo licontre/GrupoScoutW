@@ -22,7 +22,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({@NamedQuery(name="VerCorreo", query="select u from Usuario u where u.email = :email "),
-@NamedQuery(name="VerUsuarios", query="select u from Usuario u")})
+@NamedQuery(name="VerUsuarios", query="select u from Usuario u"),
+@NamedQuery(name="VerIdCorreo", query="select u from Usuario u where u.email=:uCorreo")})
+
 public class Usuario implements Serializable {
 
     private static long serialVersionUID = 1L;
@@ -60,7 +62,7 @@ public class Usuario implements Serializable {
     private List<Comentario> comentarios;
     @OneToMany(mappedBy="usuario")
     private List<Asistencia> asistencias;
-    @ManyToOne
+    @ManyToOne 
     private Seccion lista;   
     @OneToMany (mappedBy="usuario")
     private List<Documento> documentos;

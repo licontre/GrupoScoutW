@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/templates/plantilla-logueado.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">   
+    <ui:define name="title">Secretaría</ui:define>
+<ui:define name="content">
+
+      <h1>Gestión de pagos:</h1>
+    <div class="col-11 mx-sm-5 mb-5 text-center">
+        <h:form>
+            <h:dataTable id="tabla" class="table table-striped" var="cuota" value="#{controlPagos.listaCuotas}">
+               
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre cuota"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{cuota.nombre}"></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Importe"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{cuota.importe}"></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descripción"></h:outputText>
+                    </f:facet>
+                    <h:outputText value="#{cuota.descripcion}"></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <h:commandButton value="Eliminar" class="btn btn-primary"  action="#{controlPagos.eliminar()}">
+                        
+                    </h:commandButton>
+                </h:column>
+                
+           </h:dataTable>
+            
+            <div class="container" align="center">
+                <h:commandButton value="Nueva cuota" type="submit" action="/crearPago.xhtml"></h:commandButton>
+            </div>
+            
+            
+        </h:form>
+        
+        
+        
+    </div>
+
+</ui:define>
+</ui:composition>
