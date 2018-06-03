@@ -5,6 +5,8 @@
  */
 package negocio.Documentos;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -26,6 +28,7 @@ import modeloJPA.Usuario;
 public class GestionDocsImpl implements GestionDocs {
 
     private Documento documento;
+    private Usuario usuario;
 
     @PersistenceContext(unitName = "GrupoA-ejbPU")
     private EntityManager em;
@@ -47,19 +50,7 @@ public class GestionDocsImpl implements GestionDocs {
         documento = doc;
         em.merge(doc);
 
-        /* Query consulta = em.createNamedQuery("VerCorreo",Usuario.class);
-        consulta.setParameter("email", usu.getEmail());
-        List <Usuario> usuarios = consulta.getResultList();
-        if(usu.getEmail()!=user.getEmail()&&usuarios != null){//Correo en uso
-            return null;
-            //throw new CuentaRepetidaException("Correo electronico en uso");
-        }
-        usu.setId(user.getId());
-        user = usu;
-        em.merge(usu);
-        return getHome();
-         */
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     // Add business logic below. (Right-click in editor and choose
@@ -86,6 +77,27 @@ public class GestionDocsImpl implements GestionDocs {
         //return ld;
         return ld;
 
+    }
+    
+    public List<Documento> usuarioDocumentos(Long idUsuario) {
+       
+       /* List<Documento> ld = em.createQuery("SELECT d FROM Documento d").getResultList();
+        List<Documento> dcs = new ArrayList<Documento>();
+        for(Documento d : ld){
+            if(d.getUsuario().getId()== idUsuario){
+                
+            }
+        }*/
+       Query q = em.createNamedQuery("documentoUsuario");
+        q.setParameter("idUser", idUsuario);
+        return q.getResultList();
+    }
+
+    @Override
+    public Documento descargarDoc(Long idDocumento) {
+         Documento descargar = em.find(Documento.class, idDocumento);
+          return descargar;      
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

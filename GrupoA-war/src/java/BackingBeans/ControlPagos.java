@@ -3,13 +3,17 @@ package BackingBeans;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.inject.Inject;
 import modeloJPA.Cuota;
 import modeloJPA.PagoCuota;
 import modeloJPA.Usuario;
 import modeloJPA.Seccion.Cargo;
+import negocio.Pagos.GestPagos;
 
 /**
  *
@@ -21,9 +25,102 @@ public class ControlPagos implements Serializable {
 
     private Usuario usuario;
     private Cuota cuota;
+    private PagoCuota pagCuota;
     private List <Cuota> listaCuotas;
     private List<PagoCuota> listaPagosCuota;
     private float importePagoCuota;
+    
+    private float importe;
+    private String nombre;
+    private String descripcion;
+    private String correoUser;
+    
+    private String dia;
+
+    public PagoCuota getPagCuota() {
+        return pagCuota;
+    }
+
+    public void setPagCuota(PagoCuota pagCuota) {
+        this.pagCuota = pagCuota;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    public String getAnio() {
+        return anio;
+    }
+
+    public void setAnio(String anio) {
+        this.anio = anio;
+    }
+
+    public GestPagos getGestp() {
+        return gestp;
+    }
+
+    public void setGestp(GestPagos gestp) {
+        this.gestp = gestp;
+    }
+    private String mes;
+    private String anio;
+    
+    @Inject
+    private GestPagos gestp;
+
+    public float getImportePagoCuota() {
+        return importePagoCuota;
+    }
+
+    public void setImportePagoCuota(float importePagoCuota) {
+        this.importePagoCuota = importePagoCuota;
+    }
+
+    public String getCorreoUser() {
+        return correoUser;
+    }
+
+    public void setCorreoUser(String correoUser) {
+        this.correoUser = correoUser;
+    }
+
+    public float getImporte() {
+        return importe;
+    }
+
+    public void setImporte(float importe) {
+        this.importe = importe;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
     public List<PagoCuota> getListaPagosCuota() {
         return listaPagosCuota;
@@ -100,6 +197,28 @@ public class ControlPagos implements Serializable {
         
         return cuota.getImporte()/aux;
         
+    }
+    
+    
+    public String subirPago() throws ParseException{
+        
+        SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+        Date fe = sm.parse(anio+"-"+mes+"-"+dia);
+        
+        Cuota c = new Cuota();
+        PagoCuota p = new PagoCuota();
+        c.setDescripcion(descripcion);
+        c.setNombre(nombre);
+        c.setImporte(importe);
+        p.setFecha(fe);
+        gestp.guardarPago(correoUser, c, p);
+        
+        return "pagos.xhtml";
+    }
+    
+      public String eliminar(){
+        gestp.eliminarCuota(cuota);
+        return "pagos.xhtml";
     }
     
 }

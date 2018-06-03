@@ -9,10 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
 @Entity
+@NamedQueries({
+  @NamedQuery(name= "documentoUsuario", query=" select d from Documento d join Usuario u on d.usuario.id = u.id where  d.usuario.id =:idUser or d.usuario.lista.id = 7 or d.usuario.id = 6")
+})
 public class Documento implements Serializable {
 
     private static long serialVersionUID = 1L;

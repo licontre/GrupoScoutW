@@ -19,4 +19,6 @@ public interface GestionDocs {
     public void modificarDocumento(Documento doc);
     public void eliminarDocumento(Documento doc);
     public List<Documento> devolverDoc();
+    public List<Documento> usuarioDocumentos(Long idUsuario);
+    public Documento descargarDoc(Long idDoc);
 }
