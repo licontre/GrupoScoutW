@@ -16,10 +16,16 @@ body {
       font-size: 100%; 
       color: #555; 
       background-color: white;
+      
+    }
+    
+    #todo{
+        margin-bottom:50px;
     }
     
 html, body {
     line-height: 1.4em;
+    
     }
     
 #navegar{
@@ -127,7 +133,10 @@ html, body {
 }
 
 footer{
-    margin-top:20px;
+    margin-top:200px;
+    position: fixed;
+    width:100%;
+    bottom:0;
 }
 
 .navbar { 

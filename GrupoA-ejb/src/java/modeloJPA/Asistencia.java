@@ -17,7 +17,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "apuntado", query = " select a from Asistencia a where a.evento.id = :idEvento and a.usuario.id = :idUser")    
+    @NamedQuery(name = "apuntado", query = " select a from Asistencia a where a.evento.id = :idEvento and a.usuario.id = :idUser"),
+    @NamedQuery(name = "listaApuntados", query = "select u from Asistencia a, Usuario u where a.evento.id = :idEvento and a.usuario.id = u.id"),
+    @NamedQuery(name = "observacion", query = "select a.observacion from Asistencia a where a.evento.id= :idEvent and a.usuario.id = :idUser")
 })
 
 public class Asistencia implements Serializable {

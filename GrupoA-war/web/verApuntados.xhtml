@@ -16,7 +16,11 @@
     <ui:define name="content">
         <div class="container">
             <h:form>
-                <h:dataTable var="per" value="#{controlAsistencia.usuarios}">
+                <c:set var="event" value="#{manejadorEventos.evento}"/>
+                <c:set var="users" value="#{controlAsistencia.dameUsuarios(event)}"/>             
+
+
+                <h:dataTable var="per" value="#{users}">
                     <h:column>
                         <f:facet name="header">Nombre</f:facet>
                             #{per.nombre}
@@ -25,9 +29,16 @@
                         <f:facet name="header">Apellidos</f:facet>
                             #{per.apellidos}
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">Observacion</f:facet>
+                            #{controlAsistencia.dameObservacion(per, event)}
+                    </h:column>
                 </h:dataTable>
-            </h:form>
-            <h:button id="volver" class="btn btn-primary active" value="volver" outcome="/verEvento.xhtml"/>
+
+                <h:button id="volver" class="btn btn-primary active" value="volver" outcome="/verEvento.xhtml"/>
+                <h:commandButton class="btn btn-primary active" value="Descargar" action="#{controlAsistencia.listaCSV(event)}"/>
+                <h:outputText value="#{controlAsistencia.path}"/>
+            </h:form>   
         </div>    
     </ui:define>
 </ui:composition>

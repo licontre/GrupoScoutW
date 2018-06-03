@@ -79,8 +79,8 @@
                         <li><b>Localizacion:</b> #{event.localizacion}</li>
                         <li></li>
                     </ul>
-                    <c:if test="#{controlAutorizacion.usuario.cargo=='MONITOR'}">
-                        <h:button class="btn btn-primary active btn-block" value="Lista apuntados" outcome="/verApuntados.xhtml"/> 
+                    <c:if test="#{login.user.lista.id==6}">
+                        <h:button class="btn btn-primary active btn-block" value="Lista apuntados" outcome="/verApuntados.xhtml"/>
                     </c:if>
                 </div>
             </div> 
